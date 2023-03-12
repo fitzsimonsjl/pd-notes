@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7c884185e5c251f5",
+            "id": "bcf0af9daab50762",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/Test file.md",
+                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/Test file.md",
+                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/Test file.md",
+                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/Test file.md"
+                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md"
               }
             }
           }
@@ -146,13 +146,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7c884185e5c251f5",
+  "active": "bcf0af9daab50762",
   "lastOpenFiles": [
-    "WithSecure Academy 2023/Week 1/Test file.md",
-    "Azure",
-    "Azure/AZ-104",
-    "OSCP",
-    "WithSecure Academy 2023/Week 1",
-    "WithSecure Academy 2023"
+    "WithSecure Academy 2023/Week 1/IT Setup.md",
+    "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
+    "Azure/SC-900/Final Prep/SC-900-Whiteboard.png",
+    "Azure/SC-900/Final Prep/16. Service Trust Portal & Privacy at MS.pdf",
+    "Azure/SC-900/Final Prep/15. Resource governance capabilities in Azure.pdf",
+    "Azure/SC-900/Final Prep/14. eDiscovery solutions in MS Purview.pdf",
+    "Azure/SC-900/Final Prep/13. Insider risk capabilities of MS Purview.pdf",
+    "Azure/SC-900/Final Prep/12. Information protection & data lifecycle management in MS Purview.pdf",
+    "Azure/SC-900/Final Prep/11. Capabilities of Microsoft compliance solutions.pdf",
+    "Azure/SC-900/Final Prep/10. Basic security capabilities in Azure.pdf",
+    "Azure/SC-900/Final Prep/09. Threat protection with Microsoft 365 Defender.pdf",
+    "Azure/SC-900/Final Prep/08. Security capabilities of MS Sentinel.pdf",
+    "Azure/SC-900/Final Prep/07. Security management capabilities of Azure.pdf",
+    "Azure/SC-900/16. Service Trust Portal & Privacy at MS.md",
+    "Azure/SC-900/15. Resource governance capabilities in Azure.md",
+    "Azure/SC-900/14. eDiscovery solutions in MS Purview.md",
+    "Azure/SC-900/13. Insider risk capabilities of MS Purview.md",
+    "Azure/SC-900/12. Information protection & data lifecycle management in MS Purview.md",
+    "Azure/SC-900/11. Capabilities of Microsoft compliance solutions.md",
+    "Azure/SC-900/10. Basic security capabilities in Azure.md",
+    "Azure/SC-900/09. Threat protection with Microsoft 365 Defender.md",
+    "Azure/SC-900/08. Security capabilities of MS Sentinel.md",
+    "Azure/SC-900/07. Security management capabilities of Azure.md",
+    "Azure/SC-900/06. Services & Identity Types of Azure AD.md",
+    "Azure/SC-900/05. Identity Protection & Governance Capabilities of Azure AD.md",
+    "Azure/SC-900/04. MS Identity & Access Management Solutions.md",
+    "Azure/SC-900/03. Authentication Capabilities of Azure AD.md",
+    "Azure/SC-900/02. Identity Concepts.md",
+    "Azure/SC-900/01. Concepts of Security Compliance & Identity.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/8. Secure Azure resources with Azure RBAC.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/15. Create an Azure Storage account.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/13. Configure Azure Files and Azure File Sync.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/14. Configure Azure Storage with tools.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/12. Configure Azure storage security.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/11. Configure Azure Blob Storage.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/10. Configure Azure Active Directory.md",
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/09. AAD SSPR.md"
   ]
 }
