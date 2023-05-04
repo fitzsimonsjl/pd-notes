@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
+                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
                 "mode": "source",
                 "source": false
               }
@@ -64,6 +64,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "f2f8860c8e6a0467",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -85,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
+                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
+                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md"
+                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md"
               }
             }
           }
@@ -148,19 +156,21 @@
   },
   "active": "bcf0af9daab50762",
   "lastOpenFiles": [
-    "WithSecure Academy 2023/Week 1/IT Setup.md",
+    "Azure/AZ-104/KodeKloud/01 Managing AAD.md",
+    "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
+    "Azure/AZ-104/KodeKloud/15 Resource Monitoring",
+    "Azure/AZ-104/KodeKloud/14 Network Monitoring",
+    "Azure/AZ-104/KodeKloud/13 Implement Backup and recovery",
+    "Azure/AZ-104/KodeKloud/12 Configuring containers",
+    "Azure/AZ-104/KodeKloud/11 Azure App Services",
+    "Azure/AZ-104/KodeKloud/10 Managing Storage",
+    "Azure/AZ-104/KodeKloud/09 Administering Azure Blobs and Files",
+    "Azure/AZ-104/KodeKloud/08 Securing Storage",
+    "Azure/AZ-104/KodeKloud/07 Automating deployment and configuration",
+    "Azure/AZ-104/KodeKloud/06 Intersite connectivity",
     "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
+    "WithSecure Academy 2023/Week 1/IT Setup.md",
     "Azure/SC-900/Final Prep/SC-900-Whiteboard.png",
-    "Azure/SC-900/Final Prep/16. Service Trust Portal & Privacy at MS.pdf",
-    "Azure/SC-900/Final Prep/15. Resource governance capabilities in Azure.pdf",
-    "Azure/SC-900/Final Prep/14. eDiscovery solutions in MS Purview.pdf",
-    "Azure/SC-900/Final Prep/13. Insider risk capabilities of MS Purview.pdf",
-    "Azure/SC-900/Final Prep/12. Information protection & data lifecycle management in MS Purview.pdf",
-    "Azure/SC-900/Final Prep/11. Capabilities of Microsoft compliance solutions.pdf",
-    "Azure/SC-900/Final Prep/10. Basic security capabilities in Azure.pdf",
-    "Azure/SC-900/Final Prep/09. Threat protection with Microsoft 365 Defender.pdf",
-    "Azure/SC-900/Final Prep/08. Security capabilities of MS Sentinel.pdf",
-    "Azure/SC-900/Final Prep/07. Security management capabilities of Azure.pdf",
     "Azure/SC-900/16. Service Trust Portal & Privacy at MS.md",
     "Azure/SC-900/15. Resource governance capabilities in Azure.md",
     "Azure/SC-900/14. eDiscovery solutions in MS Purview.md",
@@ -182,8 +192,6 @@
     "Azure/AZ-104/a. Prerequisites for Azure Admins/13. Configure Azure Files and Azure File Sync.md",
     "Azure/AZ-104/a. Prerequisites for Azure Admins/14. Configure Azure Storage with tools.md",
     "Azure/AZ-104/a. Prerequisites for Azure Admins/12. Configure Azure storage security.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/11. Configure Azure Blob Storage.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/10. Configure Azure Active Directory.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/09. AAD SSPR.md"
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/11. Configure Azure Blob Storage.md"
   ]
 }
