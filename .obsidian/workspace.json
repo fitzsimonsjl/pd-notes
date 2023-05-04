@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
+                "file": "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD Concepts.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
+                "file": "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD Concepts.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
+                "file": "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD Concepts.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md"
+                "file": "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD Concepts.md"
               }
             }
           }
@@ -154,10 +154,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bcf0af9daab50762",
+  "active": "fe16baf626917ea9",
   "lastOpenFiles": [
+    "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD Editions.md",
+    "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD vs ADDS.md",
+    "Azure/AZ-104/KodeKloud/a. Managing AAD/AAD Concepts.md",
+    "Untitled.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD.md",
-    "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
     "Azure/AZ-104/KodeKloud/15 Resource Monitoring",
     "Azure/AZ-104/KodeKloud/14 Network Monitoring",
     "Azure/AZ-104/KodeKloud/13 Implement Backup and recovery",
@@ -189,9 +192,6 @@
     "Azure/SC-900/01. Concepts of Security Compliance & Identity.md",
     "Azure/AZ-104/a. Prerequisites for Azure Admins/8. Secure Azure resources with Azure RBAC.md",
     "Azure/AZ-104/a. Prerequisites for Azure Admins/15. Create an Azure Storage account.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/13. Configure Azure Files and Azure File Sync.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/14. Configure Azure Storage with tools.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/12. Configure Azure storage security.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/11. Configure Azure Blob Storage.md"
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/13. Configure Azure Files and Azure File Sync.md"
   ]
 }
