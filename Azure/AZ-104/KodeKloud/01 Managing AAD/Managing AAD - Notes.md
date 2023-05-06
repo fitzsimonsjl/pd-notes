@@ -42,5 +42,22 @@ AAD and AA DS are not the same!
 | Identity  Governance | Yes | No | No | No |
 
 # User Accounts
+- Used for AuthN and AuthZ
+- Each user can have optional properties like address or department
+- All users can be accessed from AAD > Users > All Users
+- Can perform bulk operations like bulk create, invite, or delete
+- Are users that only exist in AD (can be AAD or external AAD)
+- Guest accounts exist outside of Azure and are invited for collaboration - MS, Live accounts etc
+- Directory synced users are synced from on-prem Windows AD. Cannot be created, only synced
+
+# Bulk Operations
+- Will let you download a CSV template where you can add users you want to create, delete, or invite
+- Nice to have when dealing with lots in one go
+- Can also download a list of all users in directory
+
+# Group Account
+Two types:
+- Security
+- Microsoft 365 Groups
 
 
