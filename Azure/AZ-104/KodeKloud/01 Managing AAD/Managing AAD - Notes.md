@@ -34,5 +34,5 @@ AAD and AA DS are not the same!
 |---------|------------|------------|------------|-----|
 | No directory object limit | Yes | Yes | Yes | No (50,000 limit) |
 | SSO & Core IAM | Yes | Yes | Yes | Yes | 
-
+| B2B
 
