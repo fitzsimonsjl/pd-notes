@@ -34,5 +34,13 @@ AAD and AA DS are not the same!
 |---------|------------|------------|------------|-----|
 | No directory object limit | Yes | Yes | Yes | No (50,000 limit) |
 | SSO & Core IAM | Yes | Yes | Yes | Yes | 
-| B2B
+| B2B Collaboration | Yes | Yes | Yes | Yes | 
+| O365 Identity & Access | Yes | Yes | Yes | No |
+| Hybrid Identities | Yes | Yes | No | No |
+| Conditional Access | Yes | Yes | No | No |
+| Identity Protection | Yes | No | No | No |
+| Identity  Governance | Yes | No | No | No |
+
+# User Accounts
+
 
