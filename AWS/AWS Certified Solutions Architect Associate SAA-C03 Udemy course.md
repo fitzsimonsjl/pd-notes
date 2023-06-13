@@ -3526,3 +3526,91 @@ We can use CloudFront because:
 - Use cases: IoT apps, operational applications, real-time analytics
 
 # Data and Analytics
+
+### Athena
+- Serverless query service to analyse data stored in S3
+- Uses standard SQL language to query files (built on Presto)
+- Supports CSV, JSON, ORC, Avro, and Parquet
+- Pricing is $5 per TB of data scanned
+- Commonly used with Amazon Quicksight for reporting/dashboards
+- Use cases: BI/analytics/reporting and analysis, query VPC flow logs, ELB logs, CloudTrail logs etc.
+- Exam tip: analyse data in S3 using serverless SQL = use Athena
+
+#### Amazon Athena - Performance Improvement 
+
+- Use columnar data for cost savings (less scan)
+   - Apache Parquet or ORC recommended
+   - Huge performance improvement
+   - Use Glue to convert your data to Parquet or ORC
+- Compress data for smaller retreivals (bzip2, gzip, lz4, snapp, zlip, zstd)
+- Partition datasets in S3 for easy querying on virtual columns
+- Use larer files (> 128MB) to minimise overhead
+
+#### Amazon Athena - Federated Query
+- Allows you to run SQL queries across data stored in relational, non-relational, object, and custom data sources (AWS or on-prem)
+- Uses Data Source Connectors that run on AWS Lambda to run Federated Queries (e.g. CloudWatch Logs, DynamoDB, RDS)
+- Store the results in S3
+
+## Redshift
+
+### Redshift Overview
+- Redshift based on Pg, but not used for OLTP
+- It's OLAP - online analytical processing (analytics and data warehousing)
+- 10x better performance than other data warehouses, scale to PBs of data
+- Columnar storage of data instead of row based) & parallel query engine
+- Pay as you go based on the instances provisioned
+- Has a SQL interface for performing queries
+- BI tools such as Quicksight or Tableau integrate with it
+- vs Athena: faster for queries/joins/aggregations thanks to indexes
+
+### Redshift Cluster
+- Leader node: for query planning, results aggregation
+- Compute node: for performing the queries, send results to leader
+- You provision node size in advance
+- You can use reserved instances for cost savings
+
+### Redshift - Snapshots and DR
+- Redshift has Multi AZ mode for some clusters
+- Snapshots are point in time backups of a cluster, stored internally in S3
+- You can restore a snapshot into a new cluster
+- Automated: every 8 hours, every 5GB, or on a schedule - set retention
+- Manual: snapshot is retained until you delete it
+- You can configure Amazon Redshift to automatically copy snapshots (automated or manual) of a cluster to another AWS region
+- Large inserts are much better when loading data into Redshift
+
+### Redshift Spectrum
+- Query data that is already in S3 without loading it
+- Must have a Redshift cluster available to start the query
+- The query is then submitted to thousands of Redshift Spectrum nodes
+
+## OpenSearch (ElasticSearch)
+- Successor to Amazon ElasticSearch
+- In DynamoDB, queries only exist by primary keys or indexes
+- With Opensearch you can search any field - even partial matches
+- It's common to use OpenSearch as a compliment to another DB
+- Two mode: managed cluster or serverless cluster
+- Does not natively support SQL (can be enabled via plugin)
+- Ingestion from Kinesis Data Firehose, AWS IoT, and CloudWatch Logs
+- Security through Cognito & IAM, KMS encryption, TLS
+- comes with OpenSearch Dashboards (visualisation)
+
+## Elastic Map Reduce (EMR)
+- Helps creating Hadoop clusters (big data) to analyse and process vast amounts of data
+- Clusters can be made of hundreds of EC2 instances
+- EMR comes bundled with Apache Spark, HBase, Presto, Flink
+- EMR takes care of all the provisioning and configuration
+- Auto-scaling and integrated with Spot instances
+- Use cases: data processing, machine learning, web indexing, big data
+
+### Node types and purchasing
+- Master Node: Manage the cluster, coordinate, manage health- long running
+- Core Node: run tasks and store data - long running
+- Task Node (optional): just to run tasks - usually spot
+
+Purchasing options:
+- On-demand: reliable, predictable, won't be terminated
+- Reserved (min 1 year): cost savings (EMR will automatically use if available)
+- Spot instances: cheaper, can be terminated, less reliable
+- Can have long-running clusters, or transient temporary cluster
+
+## QuickSight
