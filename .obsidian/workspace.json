@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "ff3adcfbe145fe71",
+        "id": "2bdae957a12f69a6",
         "type": "tabs",
         "children": [
           {
-            "id": "bcf0af9daab50762",
+            "id": "41bf730124624eb6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
+                "file": "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
                 "mode": "source",
                 "source": false
               }
@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "deb53c92afd09000",
@@ -93,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
+                "file": "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
+                "file": "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md"
+                "file": "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md"
               }
             }
           }
@@ -154,11 +155,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bcf0af9daab50762",
+  "active": "41bf730124624eb6",
   "lastOpenFiles": [
+    "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
+    "AWS",
+    "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD vs ADDS.md",
-    "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Editions.md",
     "Untitled.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD.md",
@@ -171,7 +174,6 @@
     "Azure/AZ-104/KodeKloud/09 Administering Azure Blobs and Files",
     "Azure/AZ-104/KodeKloud/08 Securing Storage",
     "Azure/AZ-104/KodeKloud/07 Automating deployment and configuration",
-    "Azure/AZ-104/KodeKloud/06 Intersite connectivity",
     "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
     "WithSecure Academy 2023/Week 1/IT Setup.md",
     "Azure/SC-900/Final Prep/SC-900-Whiteboard.png",
@@ -191,7 +193,6 @@
     "Azure/SC-900/03. Authentication Capabilities of Azure AD.md",
     "Azure/SC-900/02. Identity Concepts.md",
     "Azure/SC-900/01. Concepts of Security Compliance & Identity.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/8. Secure Azure resources with Azure RBAC.md",
-    "Azure/AZ-104/a. Prerequisites for Azure Admins/15. Create an Azure Storage account.md"
+    "Azure/AZ-104/a. Prerequisites for Azure Admins/8. Secure Azure resources with Azure RBAC.md"
   ]
 }

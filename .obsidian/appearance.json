@@ -1,6 +1,6 @@
 {
   "accentColor": "",
-  "nativeMenus": true,
+  "nativeMenus": false,
   "baseFontSize": 17,
   "showViewHeader": true
 }
