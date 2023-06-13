@@ -3614,3 +3614,117 @@ Purchasing options:
 - Can have long-running clusters, or transient temporary cluster
 
 ## QuickSight
+- Serverless machine learning powered business intelligence to create interactive dashboards
+- Fash, automatically scalable, embedable, with per-session pricing
+
+Use cases:
+- Business analytics
+- Building visualisations
+- Perform ad-hoc analysis
+
+- Integrated with RDS, Aurora, Athena, Redshift, S3
+- In memory computation using SPICE engine if data is imported into QuickSight
+- Enterprise edition: possibility to set up Column-Level security (CLS)
+
+### QuickSight Integrations (data sources)
+
+AWS Services:
+- RDS
+- Aurora
+- Redshift
+- Athena
+- S3
+- OpenSearch
+- Timestream
+
+SaaS:
+- Salesforce
+- JIRA
+
+On-prem Databases (JDBC)
+
+Imports:
+- XLSX
+- CSV
+- JSON
+- .TSV
+- ELF & CLF log format
+
+### QuickSight - Dashboard & Analysis
+- Define usres (standard versions) and Groups (enterprise version) - these users and groups only exist within Quicksight, not IAM!
+- A dashboard is:
+   - A read only snapshot of analysis that you can share
+   - preserves the configuration of the analysis (filtering, parameters, controls, sort)
+   - You can share the analysis or the dashboard with users or groups
+   - To share a dashboard, it must first be published
+   - Users who see the dashboard can also see the underlying data
+
+## AWS Glue
+- Managed extract, transform, and load (ETL) service
+- Useful to prepare and transform data for analytics
+- full serverless service
+
+S3 bucket or Amazon RDS DB --> Glue ETL --> Redshift Data Warehouse
+
+### Convert data into Parquet format
+
+S3 PUT --> S3 Bucket --> Import CSV --> Glue ETL --> Parquet --> Output S3 Bucket --> Analyse --> Amazon Athena
+
+Also have event notifications on S3 PUT --> Lambda function (EventBridge works as an alternative)
+
+### Glue - things to know at a high level
+- Glue Job Bookmarks - prevent re-processing old data
+- Glue Elastic views:
+   - Combine and replicate data across multiple data stores using SQL
+   - No custom code, Glue monitors for changes in the source data - serverless
+   - Leverages a "virtual table" (materialised view)
+   - Glue DataBrew: clean and normalise data using pre-bulit transformation
+   - Glue Studio: new GUI to create, run and monitor ETL jobs in Glue
+   - Glue Streaming: ETL (built on Apache Spark Structured Streaming): compatible with Kinesis Data Streaming, Kafka, MSK (managed Kafka)
+
+## AWS Lake Formation
+- Data lake = central place to have all your data for analytics purposes
+- Fully managed service that makes it easy to set up a data lake in days
+- Discover, cleanse, transform and ingest data into your Data Lake
+- Automates many complex manual steps (collecting, cleansing, moving, cataloging data) and de-duplicate (using ML Transforms)
+- Combine structured and unstructured data in the data lake
+- OOTB source blueprints: S3, RDS, Relational and NoSQL DB
+- Fine-grained access control for your applications (row and column level)
+- Bulit on top of AWS Glue
+- **Lake formation takes care of acccess control with column level security so only those who need to see what is necessary do no have access to more than that**
+
+## Kinesis Data Analytics
+
+### Kinesis Data Analytics for SQL applications
+
+Sources:
+- Kinesis Data Sreams
+- Kinesis Data Firehose
+
+SQL Statements --> Kinesis Data Analytics for SQL aps <-- Reference Data in S3
+
+Sinks:
+- Kinesis Data Streams --> AWS Lambda --> Anywhere OR  Applicatoins --> anywhere
+- Kinesis Data Firehose --> S3 OR Redshift (Copy via S3) OR other Firehose destinations
+
+- Real time analytics on Kinesis Data Streams & Firehose using SQL
+- Add reference data from S3 to enrich streaming data
+- Full managed, no servers to provision
+- Automatic scaling
+- Pay for actual consumption rate
+Output:
+- Kinesis Data Streams: create streams out of real-time analytics queries
+- Kinesis Data Firehose: send analytics query results to destinations
+Use cases:
+- time series analytics
+- Real-time dashboards
+- Real time metrics
+
+### Kinesis Data Analytics for Apache Flink
+- Use Flink (Java, Scala, or SQL) to process and analyse streaming data
+- Run any Apache Flink application on a managed cluster on AWS
+   - Provisioning compute resources, parallel computation, automatic scaling
+   - Application backups (checkpoints and snapshots)
+   - Use any Apache Flink programming features
+   - Flink does not read from Firehose (use Kinesis Analytics for SQL instead)
+- 
