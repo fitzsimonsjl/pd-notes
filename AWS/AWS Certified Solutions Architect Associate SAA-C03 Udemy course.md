@@ -4917,3 +4917,71 @@ VPN to transit gateway:
 
 ## VPC Traffic Mirroring
 - Allows you to capture and inspect network traffic in your VPC
+- Route the traffic to security appliances that you manage
+- Capture traffic from (source) ENIs and/or to (targets) an ENI or NLB
+- Capture all packets or capture the packets of your interest (optionally, truncate packets)
+- Source and target can be in same VPC or different VPCs (VPC peering)
+- Use cases: content inspection, threat monitoring, troubleshooting
+
+## IPv6 for VPC
+- IPv4 cannot be disabled for your VPC and subnets
+- You can enable IPv6 (they're public IPs) to operate in dual stack mode
+- Your EC2 instances will get at least a private internal IPv4 and a public IPv6
+- They can communicate using either IPv4 or IPv6 to the internet through an Internet Gateway
+
+### IPv6 Troubleshooting
+If you cannot launch an EC2 instance in your subnet:
+- It is not because it cannot acquire an IPv6 address...
+- It's because there are no available IPv4 in your subnet
+
+Solution: Create a new IPv4 CIDR in your subnet
+
+## Egress-only Internet Gateway
+- Used for IPv6 only
+- Similar to NAT Gateway but for IPv6
+- Allows instances in your VPC outbound connections over IPv6 while preventing hte internet to initiate an IPv6 connection to your instances
+- You must update the Route Tables
+
+## Networking Costs in AWS per GB - simplified
+
+- Use private IP instead of public for good savings and better network performance
+- Use same AZ for maximum savings (at cost of HA)
+
+### Minimising egress traffic network cost
+- Egress traffic: outbound traffic (from AWS to outside)
+- Ingress traffic: inbound traffic - from outside to AWS (typically free)
+- Try keeps much internet traffic within AWS to minimise costs
+- DX locations that are colo'd in same AWS region result in lower cost for egres network
+
+### S3 Data Transfer Pricing - Analysis for US
+- S3 ingress - free
+- S3 to internet - 0.009 per GB
+- S3 Transfer Acceleratoin:
+   - Faster transfer times (50-500% better)
+   - Additional cost on top of data transfer pricing +0.04 to 0.08 per GB
+- S3 to CloudFront: 0.00 per GB
+- CloudFront to Internet: 0.0085 per GB (slightly cheaper than S3)
+   - Caching capability (lower latency)
+   - Reduce costs associated with S3 requests
+   - Pricing (7x cheaper with CloudFront)
+- S3 Cross Region Replication: 0.02 per GB
+
+## AWS Network Firewall
+- Protect your entire VPC
+- From L3 to L7 protection
+- Any direction you can inspect:
+   - VPC to VPC traffic
+   - Outbound to internet
+   - Inbound from internet
+   - To/from DX & S2S VPN
+- Internally, AWS NetFW ues AWS GWLB
+
+### Network Firewall - Fine grain control
+- Support 100s of rules:
+   - IP & Port
+   - Protocol
+   - Stateful domain list rule groups e.g. only allow outbound traffic to *.mysite.com
+   - General pattern matching using Regex
+- Traffic filtering - allow, drop or alert for traffic matching rules
+- Active flow inspection to protect against network threats with IDP capabilities
+- Send logs of rule matches to S3, CloudWatch Logs, KDF
