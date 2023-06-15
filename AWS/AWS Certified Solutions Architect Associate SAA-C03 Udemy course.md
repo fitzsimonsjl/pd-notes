@@ -4633,5 +4633,10 @@ Private IP can only allow certain values:
 - 192.168.0.0 - 192.168,255,255 (192.168.0.0/16) <-- home networks
 - All rest of IP addresses on internet are public
 
+## Default VPC Walkthrough
+- All new AWS accounts have a default VPC
+- New EC2 instances are launched into the default VPC if no subnet is specified
+- Default VPC has internet connectivity and all EC2 instances inside it have public IPv4 addresses
+- We also get a public and private IPv4 DNS name
 
-
+### VPC in AWS - IPv4
