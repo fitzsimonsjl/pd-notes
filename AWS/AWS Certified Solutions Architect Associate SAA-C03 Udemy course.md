@@ -4640,3 +4640,106 @@ Private IP can only allow certain values:
 - We also get a public and private IPv4 DNS name
 
 ### VPC in AWS - IPv4
+- VPC = Virtual Private Cloud
+- Can have multiple VPCs in an AWS region (max 5 per region - soft limit)
+- Max. CIDR per VPC is 5 (1 for each)
+   - Min size is /28 (16 IP)
+   - Max size is /16 (65536 IP)
+- Because VPC is private, only the Private IPv4 ranges are allowed (see above)
+- Your VPC CIDR should not overlap with your other networks (e.g. corp network)
+
+## Subnet Overview
+
+### VPC - Subnet (IPv4)
+- AWS reserves 5 IPs (first 4 and last 1) in each subnet that cannot be assigned to an EC2 instance:
+Assuming CIDR block is 10.0.0.0/24, reserved are:
+- 10.0.0.0 - Network address
+- 10.0.0.1 - reserved for VPC router
+- 10.0.0.2 - reserved for DNS
+- 10.0.0.255 - Network Broadcast
+
+Just like Azure
+
+Exam tip - if you need 29 IPs for EC2 instances you can't choose subnet size of /27! You need to choose /26
+
+## Internet Gateway
+- Allows resources (e.g. EC2 instances) in a VPC to connect to the internet
+- Scales horizontally, HA, redundant
+- Must be created separately from VPC
+- One VPC can only be attached to one IGW and vice versa
+- Internet Gateways on their own do not allow internet access - route tables need to be edited
+
+## Bastion Hosts
+- We can use a Bastion Host to SSH into our private EC2 instances
+- The bastion is in the public subnet which is then connected to all other private subnets
+- Bastion Host security group must allow inbound from the intenret on port 22 from restricted CIDR - e.g. public CIDR of your corp
+- Security group of EC2 instances must allow the security group of the bastion host or the private IP of the bastion host
+
+## NAT Instance
+- NAT = Network Address Translation
+- Allows EC2 instances in private subnets to connect to the internet
+- Must be launched in a public subnet
+- Must disable EC2 setting: Source/Destination check
+- Must have Elastic IP attached
+- Route Tables must be configured to route traffic from private subnets to the NAT instance
+
+### Comments
+- Pre-configed Linux AMI is available but reached end of standard support on Dec 31st 2020
+- Not HA/resilient OOTB - need to create ASG in multi-az + resilient user-data script
+- Internet traffic bandwith depends on EC2 instance type
+- Must manage security groups and rules:
+   - Inbound: 
+   - allow HTTP/S traffic coming from private subnets
+   - Allow SSH from home network (acess provided via internet gateway)
+   - Outbound:
+   - Allow HTTP/S traffic from internet
+
+## NAT Gateway
+- AWS managed NAT, higher bandwidth, HA, no admin
+- Pay per hour for usage and bandwidth
+- NATGW is created in a specific AZ, uses E-IP
+- Can't be used by EC2 instance in the same subnet (only from other)
+- Requires IGW (Private subnet --> NATGW --> IGW)
+- 5Gbps of bandwith with automatic scaling up to 45 Gbps
+- No security groups to manage/required
+
+### NAT Gateway with HA
+- NAT Gateway is resilient within a single AZ
+- Must create multiple NAT Gateways in multiple AZs for fault-tolerance
+- No cross-AZ failover needed because if an AZ goes down it doesn't need NAT
+
+## NACL & Security Groups
+- NACL are like a firewall which control traffic from and to subnets
+- One NACL per subnet, new subnets are assigned the default NACL
+You define NACL rules:
+   - Rules have a number (1-32766), higher presidence with lower number
+   - First rule match drives decisoin
+   - Last rule is an asterisk and denies a request in case of no rule match
+   - AWS recommends adding rules by incrememt of 100
+- Newly created NACLs will deny everything
+- NACL are a great way of blocking a specific IP at subnet level
+
+### Default NACL
+- Accepts everything inbound/outound with the subnets it's associated with
+- Do not modify default NACL - create custom ones
+
+### Ephemeral Ports
+- For any two endpoints to establish a connection they must use ports
+- Clients connect to a defined port and expect a response on an ephemeral port
+- Different OS use different port ranges:
+   - IANA & Win: 10 --> 49152 - 65535
+   - Many Lin kernels --> 32769 - 60999
+
+### Security Group vs NACLS
+
+|Security Group|NACL|
+|---------------|------|
+|Operates at instance level|Operates at subnet level|
+|Supports allow rules only|Supports allow and deny rules|
+|Stateful: return traffic automatically allowed, regardless of rules|Stateless: return traffic must be explicitly allowed (think ephemeral ports)|
+|All rules evaled before deciding whether to allow traffic|Rules evaled in order (lowest to highest) when deciding whether to allow traffic - first match wins|
+|Applies to an EC2 instance when specified by someone|Automatically applies to all EC2 instances in the subnet it is associated with|
+
+## VPC Peering
+- Privately connect two VPCs using AWS network
+- Make them behave as if they were in the same network
