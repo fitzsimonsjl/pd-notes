@@ -4824,3 +4824,21 @@ VPC Flow Logs --> CloudWatch Logs (metric filter SSH, RDP) --> CW Alarm (alerts)
 
 VPC Flow Logs --> S3 bucket --> Athena --> Quicksight
 
+## S2S VPN, Virtual Private Gateway, and Customer Gateway
+
+Virtual Private Gateway:
+- VPN concentrator on the AWS side of the VPN connection
+- VGW is created and attached to the VPC from which you want to create the S2S VPN connection
+- Possibility to customise the ASN (Autonomous System Number)
+
+Customer Gateway (CGW):
+- Software application or physical device on customer side of VPN connection
+
+### S2S VPN Connections
+
+CGW Device (On-prem)
+- what IP to use?
+   - Public internet routable IP for CGW device
+   - If behind a NAT device that is enabled for NAT traversal (NAT-T) use hte public IP of the NAT device
+- Important step: enable Route Propagation for the VPGW in the route table that is associated with your subnets
+- If you need to ping your EC2 instances from on-prem make sure you add the ICMP proto on the inbound of your security groups
