@@ -4743,3 +4743,47 @@ You define NACL rules:
 ## VPC Peering
 - Privately connect two VPCs using AWS network
 - Make them behave as if they were in the same network
+- Must not have overlapping CIDRs
+- VPC connection is not transitive (must be established for each VPC that need to communicate with one another)
+- You must update route tables in each VPCs subnets to ensure EC2 instances can communicate with each other
+
+### VPC Peering - Good to know
+- Can create VPC Peering connection between VPCs in different AWS accounts/regions
+- You can reference a security group in a peered VPC (works cross account in same region)
+
+## VPC Endpoints (AWS PrivateLink)
+- Every AWS service is publicly exposed (public URL)
+- VPC Endpoints (powered by PrivateLink) allows you to connect to AWS services using a private network instead of the public internet
+- Redundant and scale horizontally
+- Remove the need of IGW, NATGW to access AWS services
+In case of issues:
+- Check DNS setting resolution in your VPC
+- Check Route Tables
+
+### Types of Endpoints
+
+Interface Endpoints (PrivateLink)
+- Provisions an ENI (private IP) as an entry point (must attach security group)
+- Supports most AWS services
+- $ per hour + $ per GB of data processed
+
+Gateway Endpoints
+- Provisions a gateway and must be used as a target in a route table (does not use security groups)
+- Supports both S3 and DynamoDB
+- Free
+
+### Gateway or Interface endpoint for S3?
+- Gateway most likely going to be preferred for the exam
+- Cost: free for Gateway, $ for interface endpoint
+- Interface endpoint is preferred access for on-prem (S2S VPN or Direct Connect), a different VPC or a different region
+
+## VPC Flow Logs
+- Capture information about IP traffic going into your interfaces:
+   - VPC Flow Logs
+   - Subnet Flow Logs
+   - ENI Flow Logs
+- Helps to monitor and troubleshoot connectivity issues
+- Flow logs data can go to S3, CloudWatch Logs, and KDF
+- Captures network info from AWS managed interfaces too: ELB, RDS, ElastiCache, Redshift, Workspaces, NATGW, Transit Gateway
+
+
