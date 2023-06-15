@@ -4786,4 +4786,41 @@ Gateway Endpoints
 - Flow logs data can go to S3, CloudWatch Logs, and KDF
 - Captures network info from AWS managed interfaces too: ELB, RDS, ElastiCache, Redshift, Workspaces, NATGW, Transit Gateway
 
+### VPC Flow Logs Syntax
+
+From left to right:
+- version
+- account-id
+- interface-id
+- srcaddr
+- dstaddr
+- srcport
+- dstport
+- proto
+- packets
+- bytes
+- start
+- end
+- action
+- log-status
+
+### VPC Flow Logs - Troubleshoot SG & NACL issues
+
+Remember to look at action field
+
+Incoming requests:
+- Inbound Reject --> NACL or SG
+- Inbound Accept, Outbound Reject --> NACL
+
+Outgoing requests:
+- Outbound Reject --> NACL or SG
+- Outbound Accept, Inbound Reject --> NACL
+
+### VPC Flow Logs - Architectures
+
+VPC Flow Logs --> CloudWatch Logs --> CloudWatch Contributor Insights --> Top 10 IPs
+
+VPC Flow Logs --> CloudWatch Logs (metric filter SSH, RDP) --> CW Alarm (alerts) --> Amazon SNS
+
+VPC Flow Logs --> S3 bucket --> Athena --> Quicksight
 
