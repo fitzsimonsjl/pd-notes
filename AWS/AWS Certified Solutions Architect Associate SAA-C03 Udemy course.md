@@ -4480,10 +4480,75 @@ Custom KMS Key Policy:
 
 ### ACM - Importing Public Certs
 
+- Option to generate the certificate outside of ACM and then import it
+- No auto renewal, must import a new cert before expiry
+- ACM sends daily expiration events starting at 45 days prior to expiration (# of days can be configed, events are seen in EventBridge)
+- AWS Config has a managed rule named acm-certiicate-expiration-check to check for expiring certs (configurable number of days)
 
+### ACM - Integration with API Gateway
+- Create a custom domain name in API Gateway
+Edge-optimised (default): for global clients
+- Requests routed through CloudFront edge locations
+- API gateway still lives in 1 region
+- TLS cert must be in same region as CloudFront (us-east-1)
+- Then set up CNAME or A-Alias (better) in R53
+Regional
+- For clients within same region
+- TLS cert must be imported on API Gateway in same region as API stage
+- Set up CNAME or A-alias (better) in R53
 
+## Web Application Firewall (WAF)
+- Protects your web applications from common web exploits (Layer 7)
+- Layer 7 is HTTP (vs Layer 4 that is TCP/UDP)
+Deploy on:
+- ALB
+- API Gateway
+- CloudFront
+- AppSync GraphQL API
+- Cognito User Pool
 
+Define Web ACL rules:
+- IP set: up to 10,000 IPs - use multiple rules for more IPs
+- HTTP headers, HTTP body, or URI strings protects from common attacks like SQLi or XSS
+- Size constraints - geomatch (block countries)
+- Rate-based rules (to count occurrences of events) - for DDoS protection
 
+- Web ACL are regional except for CloudFront
+- A rule group is a reusable set of rules that you can add to a web ACL
 
+### WAF - Fixed IP while using WAF with LB
+- WAF does not support the network load balancer (L4)
+- Can use Global Accelerator for fixed IP and WAF on the ALB
 
+## Shield - DDoS Protection
+
+AWS Shield Standard:
+- Free service activated for every AWS customer
+- Provides protection from attacks sch as SYN/UDP floods, reflection attacks etc
+
+AWS Shield Advanced:
+- Optional DDoS mitigation service (3k per month)
+- Protect against more sophisticated attacks on EC2, ELB, CloudFront, Global Accelerator, and R53
+- 24/7 access to AWS DDoS response team
+- Protect against higher fees during usage spikes due to DDoS
+- Shield Advanced automatic application layer DDoS mitigation automatically creates, evaluates, and deployes AWS WAF rules to mitigate layer 7 attacks
+
+## AWS Firewall Manager
+- Manage rules in all accounts of an AWS org
+- Security policy: common set of security rules:
+  - WAF rules (ALB, API-G, CloudFront)
+  - AWS Shield Advanced (ALB, CLB, NLB, E-IP, CloudFront)
+  - Security groups for EC2, ALB, and ENI resources in VPC
+  - AWS Network Firewall (VPC level)
+  - R53 Resolver DNS Firewall
+  - Policies created at regional level
+  - **Rules appplied to new resources as they are created (good for compliance) across all future accounts in your org**
+
+### WAF vs Firewall Manager vs Shield
+- WAF, Shield, and Firewall manager are used together for comprehensive protectoin
+- define your web acl rules in WAF
+- For granular protection of your resources, WAF alone is correct choice
+- If you want to use AWS WAF across accounts, accelerate WAF configuration, or automate the protection of new resources then use Firewall Manager with WAF
+- Shield Advanced adds additional features on top of WAF such as dedicated support from Shield Response team and advanced reporting
+- If you're prone to frequent DDoS, consider purchasing Shield Advanced
 
