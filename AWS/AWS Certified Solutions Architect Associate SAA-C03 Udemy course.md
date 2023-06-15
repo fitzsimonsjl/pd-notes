@@ -4985,3 +4985,7 @@ Solution: Create a new IPv4 CIDR in your subnet
 - Traffic filtering - allow, drop or alert for traffic matching rules
 - Active flow inspection to protect against network threats with IDP capabilities
 - Send logs of rule matches to S3, CloudWatch Logs, KDF
+
+# Disaster Recovery & Migrations
+
+## Disaster Recovery in AWS
