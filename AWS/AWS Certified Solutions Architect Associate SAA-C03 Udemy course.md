@@ -3727,4 +3727,763 @@ Use cases:
    - Application backups (checkpoints and snapshots)
    - Use any Apache Flink programming features
    - Flink does not read from Firehose (use Kinesis Analytics for SQL instead)
-- 
+
+### Amazon Managed Streaming for Apache Kafka (Amazon MSK)
+- Alternative to Amazon Kinesis
+- Fully managed Apache Kafka on AWS
+- Allows you to create, update, delete clusters
+- MSK creates and manages Kafka brokers nodes and zookeeper nodes for you
+- Deploy the MSK cluster in your VPC, multi-AZ (up to 3 for HA)
+- Automatic recovery from common Apache Kafka failures
+- Data stored on EBS volumes for as long as you want
+- MSK Serverless
+   - Run Apache Kafka on MSK without managing the capacity
+   - MSK automatically provisoins resources and scales compute and storage
+
+### Kinesis Data Streamsa vs Amazon MSK
+
+|Kinesis Data Streams|Amazon MSK|
+|-----------------------|---------------|
+|1MB message size limit|1MB default, configure for higher (e.g. 10MB)|
+|Data Streams with shards|Kafka topics with Partitions|
+|Shard splitting & merging|Can only add partitions to a topic|
+|TLS in-flight encryption|Plaintext or TLS in-flight encryption|
+|KMS at rest encryption|KMS at rest encryption|
+
+### Amazon MSK Consumers
+
+Amazon MSK to:
+- Kinesis Data Analytics for Apache Fink
+- AWS Glue Streaming ETL Jobs (powered by Apache Spark Streaming)
+- Lambda
+- Or applications running on EC2 ECS or EKS
+
+## Big Data Ingestion Pipeline
+- We want the ingestion pipeline to be fully serverless
+- We want to collect data in real time
+- We want to transform the data
+- We want to query the transformed data using SQL
+- The reports created using the queries should be in S3
+- We want to load that data into a warehouse and create dashboards
+
+IoT Devices  (in real time) --> Amazon Kinesis Data Streams --> Amazon Kinesis Data Firehose (every 1 min) (--> <-- AWS Lambda) --> Ingestion Bucket (S3) --> SQS (optional) -- AWS Lambda --> triggers Athena --> Reporting bucket (also S3) --> QuickSignt or Redshift
+
+### Big Data Ingestion Pipeline discussion
+
+- IoT Core allows you to harvest data from IoT devices
+- Kinesis great for real-time data collection
+- Firehose helps with data delivery to S3 in near real time (1 min)
+- Lambda can help Firehose with data transformations
+- Amazon S3 can trigger notifications to SQS
+- Lambda can subscribe to SQS (we could have connector S3 to Lambda)
+- Athena is a serverless SQL service and results stored in S3
+- Reporting bucket contains analysed data and can be used by reporting tool such as AWS QuickSight, Redshift etc
+
+# Machine Learning
+
+## Rekognition Overview
+- Find objects, people, text, scenes in images and videos using ML
+- Facial analysis and facial search to do user verification, people counting
+- Create a database of "familiar faces" or compare against celebs
+
+Use cases:
+- Labeling
+- Content Moderation
+- Text detection
+- Face Detection and Analysis (gender, age range, emotions)
+- Face search and verification
+- Celeb recognition
+- Pathing (e.g. for sports game analysis)
+
+### Rekognition - Content Moderation
+- Detect content that is inappropriate, unwanted, or offensive (images and videos)
+- Used in social media, broadcast media, advertising, and ecommerce
+- Set a minimum confidence threshold for items that will be flaged
+- Flag sensitive content for manual review in Amazon Augmented AI (A2I)
+- Help comply with regulations
+
+## Transcribe Overview
+- Automatically convert speech to text
+- Uses a deep learning process called automatic speech recognition (ARS) to convert speech to text quickly and accurately
+- Automatically remove PII using redaction
+- Supports Automatic Language Identification for multi-lingual audio
+Use cases:
+- transcribe customer service calls
+- Automate closed captioning and subtitles
+
+## Polly Overview
+- The opposite of transcribe
+- Turn text into lifelike speech using deep learning
+- Allows you to create applications that talk
+
+### Lexicon & SSML
+- Customise the pronounciation of words with Pronounciation lexicons (stylised words and acronyms)
+- Upload the lexicons and use them in the SynthesizeSpeech operation
+- Generate speech from plain text or from documents marked up with Speeh Synthesis Markup Language (SSML) - enables more customisation
+   - emphasizing specific words or phrases
+   - phonetic pronounciation
+   - newscaster style speaking
+
+## Amazon Translate
+- Natural and accurate language translation
+- Amazon Translate allows you to localise content such as website and applications for international users and translate large volumes of text efficiently
+
+## Lex + Connect Overview
+Amazon Lex (same tech that powers Alexa):
+- Automatic speech recognition (ASR) to convert speech to text
+- Natural Language Understanding to recognise the intent of text, callers
+- Helps build chat and call centre bots
+
+Amazon Connect:
+- Receive calls, create contact flows, cloud-based virtual contact center
+- Can integrate with other CRM or AWS
+- No upfront payments, 80% cheaper than traditional contact center solutions
+
+## Comprehend Overview
+- For Natural Language Processing - NLP
+- Fully managed and serverless service
+- Uses machine learning to find insights and relationships in text
+   - Language of text
+   - Extracts key phrases, places, people, brands or events
+   - Understands how positive or negative text is
+   - Analyses text using tokenisation and parts of speech
+   - Automatically organises a collection of text files by topic
+Sample use cases:
+- Analyse customer interactoins (emails) to find what leads to a positive or negative experience
+- Create and group articles by topics that Comprehend will uncover
+
+## Comprehend Medical Overview
+Amazon Comprehend Medical detects and returns useful information in unstructured clinical text:
+- Physician's notes
+- Discharge summaries
+- Test results
+- Case notes
+
+- Uses NLP to detect PHI with DetectPHI API
+- Store your documents in S3, analyse real time data with Kinesis Data Firehose or use Amazon Transcribe to transcribe patient narratives into text that can be analysed by Amazon Comprehend Medical
+
+## SageMaker
+- Fully managed service for devs/data scientists to build ML models
+- Typically difficult to do all the processes in one place + provision servers
+- ML process (simplified): predicting your exam score
+
+## Forecast Overview
+- Fully managed service that uses ML to deliver highly accurate forecasts
+- Example: predict future sales of a raincoat
+- 50% more accurate than looking at the data itself
+- Reduce forecasting time from months to hours
+- Uses cases: Product demand planning, financial planning, resource planning
+
+## Kendra Overview
+- Fully managed document search service powered by ML
+- Extract answers from within a document
+- Natural language search capabilities
+- Learn from user interactions/feedback to promote preferred results (incremental learning)
+- Ability to manually fine-tune search results
+
+## Personalise Overview
+- Fully managed ML service to build apps with real time personalised recommendations
+- Example: personalised product recommendations
+- Same technology used by Amazon.com
+- Integrates into existing websites, applications, SMS etc
+- Implement in days not months
+- Use cases: retails stores, media, entertainment
+
+## Textract
+- Automatically extracts text, handwriting, and data from any scanned documents using AI and ML
+- Extract data from forms and tables
+- Read and process any type of document (PDF, images)
+Uses cases:
+- Financial Services (e.g. invoices, financial reports)
+- Healthcare (e.g. medical records, insurance claims)
+- Public sector (tax forms, ID docs, passports)
+
+# AWS Montioring & Audit: CloudWatch, CloudTrail & Config
+
+### CloudWatch Metrics
+- CloudWatch provides metrics for every service in AWS
+- Metric is a variable to monitor (CPUUtilization, Networkln)
+- Metrics belong to namespaces
+- Dimension is an attribute of a metric (instance id, environment etc)
+- Up to 30 dimensions per metric
+- Metrics have timestamps
+- Can create CloudWatch dashboard of metrics
+- Can create CloudWatch Custom Metrics (for RAM, as an example)
+
+### CloudWatch Metric Streams
+- Continually stream CloudWatch metrics to a destination of your choice will near real-time delivery and low latency
+   - Amazon Kinesis Data Firehose (and then destinations)
+   - 3rd party service provider such as DataDog, New Relic, or Splunk
+- Option to filter metrics to only stream a subset of them
+
+### CloudWatch Logs
+- Log groups: arbitrary name, usually representing an application
+- Log stream: instances within application/log files/containers
+- Can define log expiration policies (never expire, or 1 day to 10 years)
+- CloudWatch Logs can send logs to:
+   - S3 (exports)
+   - Kinesis Data Streams
+   - Kinesis Data Firehose
+   - AWS Lambda
+   - OpenSearch
+- Logs are encrypted by default
+- Can set up KMS based encryption with your own keys
+
+### CloudWatch Logs - Sources
+- SDK, CloudWatch Logs Agent, CloudWatch Unified Agent
+- Elastic Beanstalk: collection of logs from application
+- ECS: collection from containers
+- AWS Lambda: collection from function logs
+- VPC Flow Logs: VPC specific logs
+- API Gateway
+- CloudTrail based on filter
+- Route53: Log DNS queries
+
+### CloudWatch Log Insights
+- Search and analyse log data stored in CloudWatch Logs
+- E.g. find specific IP inside log
+- Provides purpose built query language
+   - Automatically discovers fields from AWS services and JSON log events
+   - Fetch desired event fields, filter based on conditions, calculate aggregate statistics, sort events etc.
+   - Can save queries and add them to CloudWatch dashboards
+   - Can query multiple log groups in different AWS accounts
+   - Query engine, not real-time engine
+
+### CloudWatch Logs - S3 Export
+- Log data can take up to 12 hours to become available for export
+- API is called CreateExportTask
+- Not near-real time or real time, use log subscriptions instead...
+
+### CloudWatch Log Subscriptions
+- Get real time log events from CloudWatch Logs for processing and analysis
+- Send to Kinesis Data Streams, Kinesis Data Firehose, or Lambda
+- Subscription Filter - filter which logs are events delivered to your destination
+- Cross-account subscription: send log events to resources in a different AWS account (KDS, KDF)
+
+## CloudWatch Logs for EC2
+- By default, no longs from your EC2 machine will go to CloudWatch
+- Need to run a CloudWatch agent on EC2 to push log files
+- Make sure IAM perms are correct
+- The CloudWatch log agent can be set up on-prem
+
+### CloudWatch Logs Agent & Unified Agent
+For virtual servers (EC2 instances, on-prem servers)
+   - CloudWatch Logs Agent
+   - Old version of agent
+   - Can only send to CloudWatch Logs
+
+CloudWatch Unified Agent:
+- Collect additional system level metrics like RAM, processes etc.
+- Collect logs to send to CloudWatch logs
+- Centeralised config using SSM Parameter Store
+
+### CloudWatch Unified Agent Metrics
+- Collected directly on your Linux server/EC2 instance
+- CPU (active, guest, idle, system user)
+- Disk metrics (free, used, total), Disk IO (reads, writes, bytes, iops)
+- RAM (free, inactive, used, total, cached)
+- Netstat (number of TCP and UDP connections, packets, bytes)
+- Processes (total, dead, idle, running)
+- Swap space (free, used, used %)
+- Reminder: OOTB metrics for EC2 - disk, cpu, network
+
+## CloudWatch Alarms
+- Alarms used to trigger notifications for any metric
+- Various options (sampling, % max, min, etc)
+- Alarm states: OK, INSUFFICIENT_DATA, ALARM
+- Period: length of time in sec to eval metric, high resolution custom metrics: 10s, 30s, or multiples of 60s
+
+### CloudWatch Alarm Targets
+- Stop, Terminate, Reboot, or Recover an EC2 instance
+- Trigger an autoscaling action
+- Send notification to SNS
+
+### CloudWatch Alarms - Composite Alarms
+- CloudWatch Alarms are on a single metric
+- Composite alarms are monitoring the states of multiple other alarms
+- AND and OR conditions
+- Helpful to reduce alarm noise by creating complex composite alarms
+
+### EC2 Instance Recovery
+Status Check:
+- Instance status = check the EC2 VM
+- System status = check the underlying hardware
+- Recovery: same private, public, elastic IP, metadata, placement group
+
+### CloudWatch Alarm: good to know
+- Alarms can be created based on CloudWatch Logs Metrics Filters
+- To test alarms and notifications, set the alarm state to Alarm using CLI: 
+
+```shell
+aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"
+```
+
+## EventBridge Overview (formerly CloudWatch Events)
+- Schedule: cron jobs (scheduled scripts)
+- Event Patterm: Event rules to react to a service doing something
+- Trigger Lambda functions, send SQS/SNS messages...
+
+### Amazon EventBridge
+- Event buses can be accessed by other AWS accounts using Resource-based policies
+- You can archive events (all/filter) sent to an event bus (indefinitely, or set period)
+- Ability to replay archived events
+
+### Amazon EventBridge - Schema Registry
+- EventBridge can analyse events in your bus and infer the schema
+- Schema Registry allows you to generate code for your application that will know in advance how data is structured in the event bus
+- Schema can be versioned
+
+### EventBridge- Resource based policy
+- Manage perms for a specific Event Bus
+- Example: allow/deny events from another AWS account or region
+- Use case: aggregate all events from your AWS org in a single AWS account or region
+
+## CloudWatch Insights & Operational Visibility
+
+### CloudWatch Container Insights
+- Collect, aggregate, summarise metrics and logs from containers
+- Available for containers on ECS, EKS, Kube  platforms on EC2, and Fargate (both ECS and EKS)
+- In EKS and Kube, CloudWatch insights is using a containerised version of the CloudWatch agent to discover containers
+
+### CloudWatch Lambda Insights
+- Monitoring and troubleshooting solution for serverless applications running on AWS Lambda
+- Collects, aggregates, and summarises system-level metrics including CPU time, memory, disk, and network
+- Collects, aggregates, and summarises diagnostic info such as cold starts and Lambda worker shut downs
+- Lambda Insights is provided as a Lambda Layer
+
+### CloudWatch Contributor Insights
+- Analyse log data and create time series that display contributor data
+- Helps find top talkers and understand who or what is impacting system performance
+- Works for any AWS generated logs
+- Can build rules from scratch or use sample rules AWS created - leverages your CloudWatch logs
+- CloudWatch provides built-in rules you can use to analyse metrics from other AWS services
+
+### CloudWatch Application Insights
+- Provides automated dashboards that show potential problems with monitored applications to help isolate ongoing issues
+- Your applications run on EC2 instances with select technologies only (Java, .NET, MS IIS Web Server, DBs)
+- Can use other AWS resources such as EBS, RDS, ELB, ASG, Lambda, SQS, DynamoDB, S3 bucket, ECS, EKS, SNS, API Gateway
+- Powered by SageMaker
+- More visibility into your app health to reduce time taken to troubleshoot and repair
+- Findings +alerts send to EventBridge and SSM OpsCenter
+
+### CloudWatch Insights and Operational Visibility
+
+**CloudWatch Container Insights**:
+- ECS, EKS, Kube on EC2, Fargate need agent for Kube
+- Metrics and logs
+
+**CloudWatch Lambda Insights**:
+- Detailed metrics to troubleshoot serverless apps
+
+**CloudWatch Contributors Insight**:
+- Find Top-N contributors through CloudWatch logs
+
+**CloudWatch App Insights**:
+- Automatic dashboard to troubleshoot your app and related AWS services
+
+## CloudTrail Overview
+- Provides governance, compliance, and audit for your AWS account
+- Enabled by default
+- Get history of events/API calls made within your AWS account by console, SDK, CLI, or AWS services
+- Can put logs from CloudTrail into CloudWatch Logs or S3
+- A trail can be applied to all regions (default) or single region
+- If a resource is deleted in AWS, look at CloudTrail first
+
+### CloudTrail Events
+
+**Management Events**:
+- Operations performed on resources in your AWS account e.g. configuring security (IAM AttachRolePolicy), configuring rules for routing data (EC2 CreateSubnet)
+- By default trails configed to log management events
+- Can separate Read events (that don't modify resources) from write events
+
+**Data Events**:
+- By default are not logged (high vol operations)
+- S3 object-level activity (e.g. GetObject, DeleteObject, PutObject) - can separate R/W
+- AWS Lambda function execution activity (Invoke API)
+
+**CloudTrail Insights**:
+- Enable to detect unusual activity in your account e.g. inaccurate resource provisioning, hitting service limits, bursts of IAM actions, or gaps in maintenance
+- Analyses normal management events to create baseline
+- Continuously analyses write events to detect unusual patterns like anomalies in CloudTrail console, event sent to S3, EventBridge event generated
+
+### CloudTrail Events Retention
+- Events stored for 90 days
+- To keep events longer, log them to S3 and use Athena
+
+## CloudTrail - EventBridge Integration
+
+User calls DeleteTable API to DynamoDB --> API call logged and intercepted by CloudTrail --> Event continues on to EventBridge --> Alert sent to SNS
+
+### EventBridge + CloudTrail
+
+User assumes IAM role --> API call logged (intercepted by CloudTrail) -->  event generated by EventBridge --> Notification via SNS
+
+User edits SG inbound rules on EC2 --> API call logged (intercepted by CloudTrail) --> event generated by EventBridge --> Notification via SNS
+
+## AWS Config - Overview
+- Helps with auditing and recording compliance of your AWS resources
+- Helps record configurations and changes over time
+- Can receive alerts (SNS notifications) for any changes
+- Is a per-region service
+- Can be aggregated across regions and accounts
+- Can store config data in S3, analysis with Athena
+
+### Config Rules
+- Can use AWS managed config rules (over 75)
+- Can make custom config rules (defined in AWS Lambda)
+- Rules can be evaled/triggered for each config change and/or at regular time intervals
+- AWS Config rules do not prevent actions from happening (there's no deny)
+- Pricing: no free tier, $0.003 per config item recorded per region, $0.001 per config rule per eval per region
+
+### Config Rules - Remediations
+- Automate remediation of non-compliant resources using SSM Automation Documents
+- Use AWS managed automation documents or create custom ones (can also create ones that involve Lambda)
+- Can set remediation retries if resource is still non-compliant after auto-remediation
+
+### Config Rules - Notifications
+- Use EventBridge to trigger notifications when AWS resources are non-compliant
+
+## CloudTrail vs CloudWatch vs Config
+
+**CloudWatch**:
+- Performance monitoring (metrics, CPU, network) and dashboards
+- Events and alerting
+- Log Aggregation & analysis
+
+**CloudTrail**:
+- Record API calls made within your Account by everyone
+- Can define trails for specific resources
+- Global service
+
+**Config**:
+- Record config changes
+- Evaluate resource rules against compliance rules
+- Get timeline of changes and compliance
+
+In the context of an Elastic Load Balancer:
+
+**CW**:
+- Monitoring incoming connections metric
+- Visualise error codes as % over time
+- Make dashboard to get idea of LB performance
+
+**Config**:
+- Track security group rules for LB
+- Track config changes for LB
+- Ensure SSL cert always assigned to LB (compliance)
+
+**CloudTrail**:
+- Track who made any changes to LB with API calls
+
+## IAM - Advanced
+
+### AWS Organisations
+- Global service
+- Allows management of multiple AWS accounts
+- Main account is management account - other accounts are members (can only be part of one org)
+- Consolidated billing across all accounts with single payment method
+- Pricing benefits from aggregated usage (vol discount for EC2, S3)
+- Shared reserved instances and Savings plan discounts across accounts
+- API available to automate AWS account creation
+
+Advantages:
+- Multi account vs one account Multi VPC
+- Use tagging standards for billing purposes
+- Enable CloudTrail on all accounts, end logs to central S3 account
+- Send CloudWatch Logs to central logging account
+- Establish cross account roles for admin purposes
+Security: Service Control Policies:
+- IAM policies applied to OU or accounts to restrict users and roles
+- Do not apply to management account (has full admin)
+- Must have an explicit allow - does not allow anything by default - like IAM
+
+## IAM - Advanced Policies
+
+### IAM Conditions
+- Can use things such as aws:SourceIp to restrict the client from which the API calls are being made
+- Or we can use things like aws:RequestedRegion to restrict the region API calls are being made to
+
+### IAM Roles vs Resource Based Policies
+Cross account:
+- attach a resource based policy to a resource (e.g. S3 bucket policy)
+- OR using a role as a proxy
+
+- When you assume a role (user, application, or service), you give up your original permissions assigned to the role
+- When using a resourced-based policy, the principal doesn't have to give up permissions
+
+### Amazon EventBridge - Security
+- When a rule runs, it needs permissions on the target
+- Resource based policy: Lambda, SNS, SQS, CloudWatch Logs, API Gateway
+- IAM role: Kinesis stream, Systems Manager Run Command, ECS task etc
+
+**SNS, SQS, Lambda are for resource based policies, Kinesis data streams are using an IAM role.
+
+## IAM - Policy Evaluation Logic
+
+### Permission Boundaries
+- IAM Permission Boundaries are supported for users and roles (not groups)
+- Advance feature to use a managed toplicy to set the maximum permissions an IAM entity can get
+- Can be used in combinations of AWS Orgs SCP
+Use cases:
+- Delegate responsibilities to non administrators within their permission boundaries, for example create new IAM users
+- Allow developers to self-assign policies and manage their own permissions, while making sure they can't "escalate" their privileges
+- Useful to restrict one specific user (instead of a whole account using Orgs & SCP)
+
+## IAM Identity Center
+
+- SSO for your org on AWS
+- Business cloud applications
+- SAML2 enabled applications
+- EC2 Windows instances
+- Identity providers
+  - Built-in identity store in IAM Identity Center
+  - 3rd party: AD, OneLogin, Okta
+
+### Fine-grained permissions and assignments
+
+Multi-account Perms:
+- Manage access across AWS accounts in your AWS org
+- Permission Sets - a collection of one or more IAM Policies assigned to users and groups to define AWS access
+
+Application assignments:
+- SSO access to many SAML 2.0 business apps
+- Provide required URLs, certifications and metadata
+
+Attribute-Based-Access-Control (ABAC):
+- Fine-grained permissions based on user's attributes stored in IAM Identity Center Indentity Store
+- Example: cost center, title, locale
+- Use case: Define permissions once, then modify AWS access by changing the attributes
+
+## AWS Directory Services
+
+AWS Managed Microsoft AD
+- Create your own AD in AWS, manage users local, supports MFA
+- Establish "trust" connections with your on-prem AD
+
+AD Connector
+- Directory Gateway (proxy) to redirect to on-prem AD, supports MFA
+- Users managed on the on-prem AD
+
+Simple AD
+- AD-compatible managed directory on AWS
+- Cannot be joined with on-prem AD
+
+## AWS Control Tower
+- Easy way to set up and govern a secure and compliant multi-account AWS environment based on best practices
+- AWS Control Tower users AWS Organisations to create accounts
+
+Benefits:
+- Automate the set up of your environment in a few clicks
+- Automate ongoing policy management using guardrails
+- Detect policy violations and remediate them
+- Montior compliance through an interactive dashboard
+
+### AWS Control  Tower - Guardrails
+- Provides ongoing governance for your Control Tower environment (AWS accounts)
+- Preventive Guardrail - using SCPs (e.g. restrict regions across all accounts)
+- Detective Guardrail - using AWS config (identify untagged resources)
+
+# AWS Security & Encryption - KMS, SSM Parameter Store, CloudHSM, Shield, WAF
+
+## Encryption 101
+
+### Encryption in flight (SSL)
+- Data encrypted before sending and decrypted after receiving
+- SSL certificates help with encryption (HTTPS)
+- Encryption in flight ensures no MITM can happen
+
+### Server side encryption at rest
+- Data encrypted after being received by server
+- Data decrypted before being sent
+- It is stored in an encrypted form thanks to key
+- Encryption/decryption keys must be managed somewhere and the server must have access to it
+
+### Client side encryption
+- Data is encrypted by the client and never decrypted by the server
+- Data will be decrypted by a receiving client
+- The server should not be able to decrypt the data
+- Could leverage Envelope Encryption
+
+## AWS KMS Overview
+- Any time you hear "encryption" for an AWS service, most likely KMS
+- AWS manages encryption keys for us
+- Fully integrated with IAM for authorization
+- Easy way to control access to your data
+- Able to audit KMS Key usage using CloudTrail
+- Seamlessly integrated into most AWS services
+- Never store your secrets in plain text!
+- KMS Key encryption also available via API calls
+- Encrypted secrets can be stored in environment variables
+
+### KMS Key Types
+
+Symmetric (AES-256):
+- Single encryption key that is used to encrypt and decrypt
+- AWS services that are integrated with KMS use Symmetric CMKs (Customer Master Key)
+
+Asymmetric (RSA & ECC key pairs):
+- Public (Encrypt) and Private (Decrypt) pair
+- Used to encrypt/decrypt or sign/verify operations
+- Public key downloadable, but can't access private key unencrypted
+- Use case: encryption outside of AWS by users who can't call the KMS API
+
+### AWS KMS (Key Management Service)
+
+Types of KMS Keys:
+- AWS owned (free); SSE-S3, SSE-SQS, SSE-DDB (default key)
+- AWS Managed Key (free): (aws/service name e.g. aws/rds)
+- Customer managed keys created in KMS: $1/month + pay for API calls to KMS (0.003 per 1000 calls)
+
+Automatic key rotation:
+- AWS managed KMS key: automatic every year
+- Customer managed KMS: (must be enabled) automatic every year
+- Imported KMS key: manual rotation possible using alias
+
+**! KMS Keys are scoped per region - if you're copying snapshots across regions, after copying the snapshot is re-encrypted with a different KMS Key which AWS does for you**
+
+### KMS Key Policies
+- Control access to KMS keys similar to S3 bucket policies
+- Difference: you cannot control access without them
+
+Default KMS Key policy:
+- Created if you don't provide a specific policy
+- Complete access to the key to the root user = entire AWS account
+
+Custom KMS Key Policy:
+- Define users, roles that can access the KMS key
+- Define who can administer the key
+- Useful for cross-account access of your KMS key
+
+### Copying snapshots across accounts
+
+1. Create snapshot encrypted with your own KMS key (customer managed)
+2. Attach a KMS Key Policy to authorise cross-account access
+3. Share encrypted snapshot
+4. (in target) create a copy of the snapshot, encrypt it with a CMK in your account
+5. Create a volume from the snapshot
+
+## KMS Multi-region keys
+- same key but ARN has region prefix
+- Identitical keys in different AWS regions that can be used interchangeably 
+- Multi-region keys have the same Key ID, key material, automatic rotation
+- Encrypt in one region, decrypt in other regions
+- No need to re-encrypt or making cross region api calls
+- KMS multi-region are NOT global (Primary + replicas)
+- Each multi-region key is managed independently
+- Use cases: global client-side encryption, encryption on Global DynamoDB, Global Aurora
+
+### DynamoDB Global Tables and KMS Multi-region keys client side encryption
+
+- We can encrypt specific attributes client-side in our DynamoDB table using the Amazon DynamoDB Encryption client
+- Combined with Global Tables, the client-side encrypted data is replicated to other regions
+- If we use a multi-region key, replicated in the same region as the DynamoDB Global table, then clients in these regions can use low-latency API calls to KMS in their region to decrypt the data client side
+- Using client-side encryption we can protect specific fields and guarantee only decryption if the client has access to an API key
+
+### Global Aurora and KMS Multi-region keys client side encryption
+- We can encrypt specific attributes client-side in our Aurora table using the AWS Encryption SDK
+- Combined with Aurora Global Tables, the client-side encrypted data is replicated to other regions
+- If we use a multi-region key replicated in the same region as the Global Aurora DB then clients in these regions can use low-latency API calls to KMS in their region to decrypt the data client-side
+- Using client-side encryption we can protect specific fields and guarantee only decryption if the client has access to an API key, we can protect specific fields even from DB admins
+
+## S3 Replication with Encryption - Considerations
+- Unencrypted objects and objects encrypted with SSE-S3 are replicated by default
+- Object encrypted with SSE-C (customer provided key) are never replicated
+- For objects encrypted with SSE-KMS you need to enable the option
+   - Specify which KMS Key to encrypt the objects within the target bucket
+   - Adapt the KMS Key Policy for the target key
+   - An IAM Role with kms:Decrypt for the source KMS key, kms:Encrypt for target KMS key
+   - Might get KMS throttling errors - ask for a service quotas increase
+   - Can use multi-region KMS keys but currently treated as independent keys by S3 (object will still be decrypted and then encrypted)
+
+## AMI Sharing Process Encrypted via KMS
+
+1. AMI in source account encrypted with KMS key from source agent
+2. Must modify image attribute to add a launch permission which corresponds to the specified target AWS account
+3. Must share KMS keys used to encrypt the snapshot the AMI references, with the target account/IAM role
+4. IAM role/user in target account must have permissions to describeKey, ReEncrypted, CreateGrant, Decrypt
+5. When launching an EC2 instance from the AMI, optionally the target account can specify a new KMS key in its own account to re-encrypt the volumes
+
+## SSM Parameter Store Overview
+- Secure storage for configuration and secrets
+- Optional seamless encryption using KMS
+- Serverless, scalable, durable, easy SDK
+- Version tracking of configurations/secrets
+- Security through IAM
+- Notifications with Amazon EventBridge
+- Integration with CloudFormation
+
+### SSM Parameter Store Hierarchy
+- /my-department
+   - my-app/
+      - dev/
+         - db-url
+         - db-password
+     - prod/
+        - db-url
+        - db-password
+    - other-app/
+- /other-department/
+- /aws/reference/secretsmanager/secret_ID_in_secrets_manager
+- /aws/service/ami-amazon-linux-latest/amzn-2-ami-hvm-x86_64-gp2 (public)
+
+### Standard and advanced parameter tiers
+
+| |Standard|Advanced|
+|-|---------|-----------|
+|Total no. params allowed (per AWS acc and region)|10,000|100,000|
+|Maximum size of a param value|4KB|8KB|
+|Param policies available|No|Yes|
+|Cost|No additional charge|Charges apply|
+|Storage pricing|Free|0.005 per advanced param per month|
+
+### Parameters Policies (for advanced params)
+- Allow to assign a TTL to a parameter to force updating or deleting sensitive data such as passwords
+- Can assign multiple policies at a time
+
+## AWS Secrets Manager Overview
+- Newer service meant for storing secrets
+- Capability to force rotation of secrets every X days
+- Automate generation of secrets on rotation (uses Lambda)
+- Integration with RDS (MSQL, Pg, Aurora)
+- Secrets encrypted using KMS
+- Mostly meant for RDS integration
+
+### AWS Secrets Manager - Multi-Region Secrets
+- Replicate secrets across multiple AWS regions
+- Secrets Manager keeps read replicas in sync with the primary secret
+- Ability to promote a read replica Secret to standalone secret
+- Use cases: multi-region apps, DR, multi-region DB
+
+## AWS Certificate Manager (ACM)
+- Easily provisoin, manage, and deploy TLS certificates
+- Provide in-flight encryption for websites (HTTPS)
+- Supports both public and private TLS certs
+- Free of charge for public TLS certs
+- Automated TLS cert renewal
+- Integrations with:
+   - ELB
+   - CloudFront Distribution
+   - APIs on API Gateway
+- Cannot use ACM with EC2 (can't be extracted)
+
+### ACM - Requestion Public Certs
+
+1. List domain names to be included in cert
+   - FQDN
+   - Wildcard?
+2. Select Validation method: DNS or email
+   - DNs validation preferred (uses CNAME e.g. in Route53)
+   - Email validation will send emails to contact addresses in WHOIS DB
+3. Wait a few hours for verification to happen
+4. Public cert will be enrolled for automatic renewal
+   - ACM automatically renews ACM generated certs 60 days before expiry
+
+### ACM - Importing Public Certs
+
+
+
+
+
+
+
+
