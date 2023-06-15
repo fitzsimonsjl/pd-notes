@@ -4842,3 +4842,35 @@ CGW Device (On-prem)
    - If behind a NAT device that is enabled for NAT traversal (NAT-T) use hte public IP of the NAT device
 - Important step: enable Route Propagation for the VPGW in the route table that is associated with your subnets
 - If you need to ping your EC2 instances from on-prem make sure you add the ICMP proto on the inbound of your security groups
+
+### AWS VPN CloudHub
+- Provide secure communication between multiple sites if you have multiple VPN connections
+- Low-cost hub and spoke model for primary or secondary network connectivity between locations (VPN only)
+- VPN connection so goes over public internet
+- To set it up, connect multiple VPN connections on same VGW, setup dynamic routing and configure route tables
+
+## Direct Connect (DX)
+- Provides a dedicated private connection from a remote network to your VPC
+- Dedicated connections must be set up between your DC and AWS Direct Connect locations
+- You need to set up a VPGW on your VPC
+- Access public resources (S3) and private (EC2) on same connection
+Use cases:
+- Increase bandwidth throughput - working iwth large data sets, lower cost
+- More consistent network experience - applications using real-time data feeds
+
+### Direct Connect Gateway
+- If you want to set up a Direct Connect to one or more VPC in many different regions (same account) you must use a Direct Connect Gateway
+
+### Direct Connect - Connection Types
+
+Dedicated Connections (1Gbps, 10Gbps and 100Gbps capacity)
+- Physical ethernet port dedicated to customer
+- Request made to AWS first, then completed by AWS Direct Connect Partners
+
+Hosted Connections (50Mbps, 500Mbps to 10Gbps)
+- Connection requests are made via AWS Direct Connect Partners
+- Capacity can be added or removed on demand
+- 1, 2, 5, 10 Gbps availalbe at select AWS Direct Connect Partners
+
+- Lead times often longer than 1 months to establish a new connection
+
