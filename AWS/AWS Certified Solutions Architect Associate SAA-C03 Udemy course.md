@@ -4593,3 +4593,45 @@ Input data includes:
 - A fully managed data security and privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS
 - Macie helps identify and alert you to sensitive data like PII in S3 buckets
 
+# Networking - VPC
+
+## CIDR, Private IP vs Public IP
+- Classless inter-domain routing - a method for allocating IPs
+- Used in security group rules and AWS networking in general
+- Help define an IP range
+
+### Understanding CIDR - IPv4
+- A CIDR consists of two components:
+   - Base IP (Represents an IP contained in the range)
+   - Subnet mask (defines how many bits can change in the IP) e.g. /0 /24 /32
+Can take two forms:
+- /8 --> 255.0.0.0
+- /16 --> 255.255.0.0
+- /24 --> 255.255.255.0
+- /32 --> 255.255.255.255
+
+### Understanding CIDR - Subnet Mask
+- the subnet mask allows part of the underlying IP to get additional next values from the base IP
+
+192.168.0.0 /32 --> Allows for 1 IP (2^0) --> 192.168.0.0
+192.168.0.0 /31 --> Allows for 2 IP (2^1) --> 192.168.0.0 -> 193.168.0.1
+
+and so on and so on
+
+**Quick memo**:
+ /32 - no octet can change
+ /24 - last octet can change
+ /16 - last 2 octets can change
+ /8 - last 3 octets can change
+
+### Public vs Private IP (IPv4)
+- The Internet Assigned Numbers Authority (IANA) established certain blocks of IPv4 addresses for the user of private (LAN) and public (internet) addresses
+
+Private IP can only allow certain values:
+- 10.0.0.0 - 10.255.255.255 (10.0.0.0/8) <-- in big networks
+- 172.16.0.0 - 172.31.255.25 (172.16.0.0/12) <-- AWS default VPC in that range
+- 192.168.0.0 - 192.168,255,255 (192.168.0.0/16) <-- home networks
+- All rest of IP addresses on internet are public
+
+
+
