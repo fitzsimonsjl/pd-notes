@@ -4874,3 +4874,46 @@ Hosted Connections (50Mbps, 500Mbps to 10Gbps)
 
 - Lead times often longer than 1 months to establish a new connection
 
+### Direct Connection - Encryption
+- Data in transit is not encrypted but is private
+- AWS Direct Connect + VPN provides an IPsec-encrypted private connection
+- Good for extra level of security, but slightly more complex setup
+
+### Direct Connect - Resiliency
+- One connection at multiple locations (good for critical workloads)
+- Maximum reslience achieved by separate connections terminating on separate devies in more than one location
+
+## Direct Connect + S2S VPN
+
+### S2S VPN as backup
+- In case Direct Connect fails you can set up a backup Direct Connect connection (expensive), or a S2S VPN connection
+
+## Transit Gateway
+- For having transitive peering between thousands of VPC and on-prem hub and spoke (star) connection
+- Regional resource, can work cross region
+- Share cross-account using Resource Access Manager
+- You can peer Transit Gateways across regions
+- Route Tales: limit which VPC can talk with others
+- Works with DXGW, VPN connections
+- Supports IP multicast (no other AWS service does)
+
+### Transit Gateway: S2S VPN ECMP
+- ECMP = Equal lcost multi-path routing
+- Routing strategy to allow to forward a packet over multiple best path
+- Use case: create multiple S2S VPN connections to increase the bandwidth of your connection to AWS
+
+### Transit Gateway: throughput with ECMP
+
+VPN to virtual private gateway:
+1 = to 1VPC
+1 = 1.25Gbps
+VPN connection (2 tunnels)
+
+VPN to transit gateway:
+1 = to many VPC
+1 = 2.5Gbps (ECMP - 2 tunnels used)
+2 = 5.0Gbps (ECMP)
+3 = 7.5Gbps (ECMP)
+
+## VPC Traffic Mirroring
+- Allows you to capture and inspect network traffic in your VPC
