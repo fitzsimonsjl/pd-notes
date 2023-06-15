@@ -4552,3 +4552,44 @@ AWS Shield Advanced:
 - Shield Advanced adds additional features on top of WAF such as dedicated support from Shield Response team and advanced reporting
 - If you're prone to frequent DDoS, consider purchasing Shield Advanced
 
+## Amazon GuardDuty
+- Intelligent Threat discovery to protect your AWS account
+- Uses ML algorithms, anomaly detection, 3rd party data
+- One click to enable (30 day trial), no need to install software
+Input data includes:
+- CloudTrail event logs - unusual API calls, unauthorised deployments
+- cloudTrail Management Events - create VPC subnet, create trail
+- CloudTrail S3 data events  - get object, list object, delete object
+- VPC flow logs - unusual internet traffic or IPs
+- DNS logs - compromised EC2 instances
+- Optional features: EKS audit logs, RDS & Aurora, EBS, Lambda, S3
+
+- Can set up EventBridge rules to be notified in case of findings
+- EventBridge rules can target AWS Lambda or SNS
+- Can protect against Crypto attacks (has dedicated finding)
+
+### Amazon Inspector
+- Automated security assessments
+- For EC2 instances:
+   - Leveraging the SSM agent
+   - Analyse against unintended network access
+   - Analyse the running OS against known vulns
+- For container images push to ECR
+   - Assessment of images as they are pushed
+- For Lambda funtions:
+   - Identifies software vulns in function code and package dependencies
+   - Assessment of functions as they are deployed
+- Reporting & integrations with AWS security hub
+- Send findings to EventBridge
+
+### What does Amazon Inspector Evaluate?
+- Remember: only for EC2 instances, container images, and lambda functions
+- Continuous scanning of infra, only when needed
+- Package vulns (EC2, ECR & Lambda) - DB of CVE
+- Network reach-ability (EC2)
+- A risk score is associated with all vulns for prioritisation
+
+## Amazon Macie
+- A fully managed data security and privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS
+- Macie helps identify and alert you to sensitive data like PII in S3 buckets
+
