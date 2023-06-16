@@ -5225,3 +5225,31 @@ With AWS Backup, it also:
 
 ## Event Processing in AWS
 
+#### Lambda, SNS & SQS
+
+SQS + Lambda:
+
+SQS --> Try, retry (poll) --> Lamdba (if fail X times, goes to DLQ on SQS side)
+
+SQS FIFI + Lambda:
+
+SQS FIFO --> try, retry (blocking) --> Lambda (if fail X times, goes to DLQ on SQS FIFO side)
+
+SNS + Lambda:
+
+SNS (async) --> Lambda (retries loop back to Lambda). If failure after X times, goes to SQS on Lambda side
+
+### Fan out pattern: deliver to multiple SQS
+
+Option 1:
+
+SDK --> Individual PUT to individual SQS
+
+Option 2 - fan out:
+
+SDK --> SNS --> subscribed SQS
+
+
+
+
+
