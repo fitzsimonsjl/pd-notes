@@ -4989,3 +4989,239 @@ Solution: Create a new IPv4 CIDR in your subnet
 # Disaster Recovery & Migrations
 
 ## Disaster Recovery in AWS
+
+- Any event that has a negative impact on the company's business continuity or finances
+- On-prem to on-prem DR very expensive
+- On-prem to AWS Cloud a hybrid recovery
+- AWS Region A to AWS Region B (Cloud)
+- Need two terms for the exam: Recovery Point Objective (RPO), and Recovery Time Objective (RTO)
+
+### DR Strategies (from slowest to fastest)
+- Backup and Restore
+- Pilot Light
+- Warm Standby
+- Hot Site / Multi Site Approach
+
+### Backup and Restore (High RPO)
+- Takes some time (anywhere from 1 hour to a few days depending on how many snapshots you take)
+- Cost is storage of backups and snapshots
+- No infra to manage in the middle
+- Expensive, but not  in comparison to other forms necessarily
+- Both give high RPO and high RTO
+
+### Pilot Light
+- A small version of the app always running in cloud
+- Useful for the critical core things 
+- Very similar to backup and restore
+- Faster than backup and restore as critical systems (e.g. your DB with your data on it) is already up and running - just have to add the few non-critical things on top
+- Could use R53 to failover to the cloud
+- Lower RPO and RTO but costs are still managed sensibly
+
+### Warm Standby
+- Full system up and running at minimum size
+- Upon disaster we can scale to production load
+- More costly, but again, lower RPO and RTO
+
+Multi Site / Hot Site Approach
+- Very low RTO (minutes or seconds) - very expensive
+- Full production scale is running in AWS and on-prem
+- Referred to as Active-Active 
+
+### DR Tips
+
+**Backup**
+- EBS snapshots, RDs automated backups/Snapshots
+- Regular pushes to S3, S3 AI / Glacier; Lifecycle Policy, cross region replication
+- From on-prem: snowball or storage gateway
+
+**HA**
+- Use R53 to migrate DNS over from region to region
+- RDS multi-AZ, ElastiCache multi-AZ, EFS, S3
+- S2S VPN as recover from DX
+
+**Replication**
+- RDS replication (cross region), AWS Aurora + Global DB
+- Database replication from on-prem --> RDS
+- Storage Gateway
+
+**Automation**
+- CloudFormation/ Elastic Beanstalk to re-create a whole new environment
+- Recover/reboot EC2 instances with CloudWatch if alarms fail
+- AWS lambda functions for custom automation
+
+## DB Migration Service (DMS)
+- Quickly and securely migrate DBs to AWS that are resilient and self healing
+- Source DB remains available during migration
+- Supports homogeneous migrations e.g. Oracle to Oracle, and heterogeneous migrations e.g. MSSQL to Aurora
+- Continuous data replication using CDC
+- Must create an EC2 instance to perform replication tasks
+
+### DMS Sources and Targets
+
+**Sources**:
+- On-prem and EC2 instances DB: Oracle, MSSQL Server, MSQL, MariaDB, Pg, MongoDB, SAP, DB2
+- Azure: Azure SQL DB
+- Amazon RDS: all inc. Aurora
+- S3
+- DocumentDB
+
+**Targets**:
+- On-prem and EC2 instance DB: Oracle, MSSQL Server, MSQL, MariaDB, Pg, SAP
+- Amazon RDS
+- Redshift, DynamoDB, S3
+- OpenSearch Service
+- KDS
+- Apache Kafka
+- DocumentDB & Amazon Neptune
+- Redis & Babelfish
+
+### AWS Schema Conversion Tool (SCT)
+- Convert your DB schema from one engine to another
+- E.g for OLTP: SQL Server or Oracle to MSQL, Pg, or Aurora
+- E.g. for OLAP: Teradata or Oracle to Redshift
+- Do not need to use SCT if migrating to same DB engine
+
+### AWS DMS - Multi-AZ Deployment
+- When multi-AZ enabled, DMS provisions and maintains a synchronously standard replica in a different AZ
+Advantages:
+- Provides data redundancy
+- Eliminates IO freezes
+- Minimises latency spikes
+
+## RDS & Aurora Migrations
+
+#### RDS MSQL to Aurora MSQL
+
+Option 1:
+- DB snapshots from RDS MSQL restored as MSQL Aurora DB
+
+Option 2: 
+- Create an Aurora Read Replica from your RDS MSQL and when replication lage is 0, promote it to its own DB cluster (this can take time and cost)
+
+#### External MSQL to Aurora MSQL
+
+Option 1:
+- User Percona XtraBackup to create a file backup in S3
+- Create an Aurora MSQL DB from S3
+
+Option 2:
+- Create an Aurora MSQL DB
+- Use the mysqldump utility to migrate MSQL into Aurora (slower than S3 method)
+
+- Finally, use DMS if both DBs are up and running
+
+### RDS & Aurora Pg Migrations
+
+#### RDS Pg to Aurora Pg
+
+Option 1:
+- DB snapshots from RDS Pg restored as Pg Aurora DB
+
+Option 2:
+- Create an Aurora Read Replica from your RDS Pg, and when replication lag is 0, promote to own DB cluster (again, time and money)
+
+#### External Pg to Aurora Pg
+- Create a backup and put it in S3
+- Improve using aws_s3 Aurora extension
+
+- Again, use DMS if both DBs are up and running
+
+## On-prem strategy with AWS
+- Ability to download Amazon Linux 2 AMI as VM (.iso format) and import into VMware, Virtualbox etc
+- VM import and export means you can:
+   - Migrate existing applications into EC2
+   - Create a DR repository strategy for your on-prem VMs
+   - Can export back the VMs from EC2 to on-prem
+
+AWS Application Discovery service:
+- Gather info about your on-prem servers to plan migration
+- Server utilization and dependency mappings
+- Track with AWS Migration Hub
+
+AWS DB Migration Service (DMS)
+- Replicate on-prem -> AWS, AWS -> AWS, AWS -> on-prem
+- Works with various DB technologies
+
+AWS Server Migration Service (SMS)
+- Incremental replication of on-prem live servers to AWS
+
+## AWS Backup
+- Fully managed service
+- Centrally manage and automate backups across AWS services
+- No need to create custom scripts or do manual processes
+Supported services:
+- EC2 / EBS
+- S3
+- RDS (all DB engines)/Aurora/DynamoDB
+- DocumentDB/Neptune
+- AWS Storage Gateway (Volume Gateway)
+
+- Suports cross-region backups
+- Supports cross account backups
+
+With AWS Backup, it also:
+- Supports PITR for supported services
+- On-demand and scheduled backups
+- Tag-based backup policies
+- You can create backup policies known as Backup Plans
+   - Backup frequency (every 12 hours, daily, weekly, monthly, cron)
+   - Backup window
+   - Transition to cold storage (never, days, weeks, months, years)
+   - Retention period (Always, days, weeks, months, years)
+
+### AWS Backup Vault Lock
+- Enforce a WORM state for all backups that you store in your AWS Backup Vault
+- Additional layer of defence to protect your backups against:
+   - Inadvertant or malicious delete operations
+   - Updates that shorten or alter retention periods
+- Even root user cannot delete backups when enabled
+
+## Application Migration Service (MGN)
+
+### AWS Application Discovery Service
+- Plan migration projects by gathering info about on-prem DCs
+- Server utilisation data and dependency mapping are important for migrations
+
+**Agentless Discover (AWS Agentless Discovery Connector)
+- VM inventory, config, and performance history such as CPU, memory, and disk usage
+
+**Agent based Discover (AWS Application Discovery Agent)
+- System config, system performance, running processes, and details of the network connections between systems
+
+- Resulting data can be viewed within AWS Migration Hub
+
+### Application Migration Service (MGN)
+- Lift and shift solution which simplifies migrating applications to AWS
+- Converts your physical, virtual, and cloud-based servers to run natively on AWS
+- Supports wide range of platforms, OS, DB
+- Minimal downtime, reduced costs
+
+## Transfering Large Datasets into AWS
+
+**Over the internet / S2S VPN**:
+- Immediate to set up
+- Will take a long time if data is large (e.g. 200TB at 100mbps would take roughly 185 days)
+
+**Over DX 1Gbps**:
+- Long for one time set up (over 1 month)
+- Will take roughly 18.5 days with the same 200TB at 100mbps
+
+**Over snowball**:
+- Will take 2 to 3 snowballs in parallel
+- Takes about 1 week for E2E transfer
+- Can be combined with DMS
+
+- For on-going replication/transfers: S2S VPN or DX with DMS or DataSync
+
+## VMware Cloud on AWS
+- Some customers use VMware Cloud to manage their on-prem DC
+- They want to extend the DC capacity to AWS but kep using VMware Cloud
+- Theycan use VMware Cloud on AWS...
+- Migrate your VMware vSphere-based workloads to AWS
+- Run your production workloads across VMware vSphere based private, public, and hybrid cloud environments
+- Have a DR strategy
+
+# More Solution Architectures
+
+## Event Processing in AWS
+
