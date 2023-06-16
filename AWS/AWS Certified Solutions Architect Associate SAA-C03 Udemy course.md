@@ -5250,6 +5250,100 @@ Option 2 - fan out:
 SDK --> SNS --> subscribed SQS
 
 
+### High Performance Computing
+- Cloud is perfect place to perform HPC
+- Can create a very high number of resources in no time
+- Can speed up time to results by adding more resources
+- Can pay only for systems you have used
+
+### Data Management & Transfer
+
+AWS DX: move GBs of data to cloud over private secure network
+Snowball & snowmobile: move PB of data to cloud
+DataSync: Move large amount of data between on-prem and S3, EFS, FSx for Windows
+
+### Compute & Networking
+EC2 Instances:
+- CPU, GPU optimised
+- Spot instances/spot fleets for cost savings + autoscaling
+- EC2 placement groups: cluster for good network performance
+
+EC2 Enhanced Networking (SR-IOV)
+- Higher bandwidth, higher PPS (packet per second), lower latency
+- Option 1: Elastic Network Adapter (ENA) up to 100Gbps
+- Option 2: Intel 82599 VF up to 10Gbps - Legacy
+
+Elastic Fabric Adapter (EFA)
+- Improved ENA for HPC, only works for linux
+- Great for inter-node communications, tightly coupled workloads
+- Leverages Message Passing Interface (MPI) standard
+- Bypasses the underlying Linux OS to provide low-latency reliable transport
+
+### Storage
+
+Instance attached:
+- EBS: scale up to 256,000 IOPS with io2 Block Express
+- Instance store: scale to millions of IOPs, linked to EC2
+
+Network:
+- S3: large blob, not file system
+- EFS: scale IOPS based on total size or use provisioned IOPS
+- FSx for Lustre: HPC optimised distributed file system, millions of IOPS - backed by S3
+
+### Automation & Orchestration
+
+AWS Batch:
+- Supports multi-node parallel jobs which enables you to run single jobs that span multiple EC2 instances
+- Easily schedule jobs and launch EC2 instances accordingly
+
+AWS ParellelCluster:
+- Open-source cluster management tool to deploy HPC on AWS
+- Configure with text file
+- Automate creation of VPC, subnet, cluster, and instance types
+- Ability to enable EFA on cluster (improves network performance)
+
+# Other Services
+
+### CloudFormation
+- declarative way of outlineing AWS infra
+- Same as ARM templates or Bicep in Azure
+
+### Simple Email Service (SES)
+- Fully managed service to send email securely and globally at scale
+- Allows inbound/outbound emails
+- Reputation dashboard, performance insights, anti-spam feedback
+- Provides statistics such as email deliveries, bounces, email open
+- Supports DKIM and SPF
+- Flexible IP deployment: shared, dedicated, and customer owned IPs
+- Send emails using your app using AWS console, APIs or SMTP
+- Use cases, marketing and bulk email comms
+
+### Pinpoint
+- Scalable 2 way marketing comms service
+- Supports email, sms, push, voice, in app messaging
+- Ability to segment and personalise messages with right content to customers
+- Possible to receive replies
+- Scales to billions of messages per day
+
+Vs SNS or SES:
+- In SNS/SES you manage each message audience, content and delivery schedule
+- In pinpoint just create a message template through to a full campaign
+
+### Systems Manager - SSM Session Manager
+- Allows you to start a secure shell on your EC2 and on-prem servers
+- No SSH access, bastion hosts, or SSH keys needed
+- No port 22 needed
+- Send session log data to S3 or CloudWatch logs
+
+### Systems Manager - Run Command
+- Execute a document (=script) or just run a command
+- Run command across multiple instances (using resource groups)
+- No need for SSH
+- Command output can be shown in AWS console, sent to S3 bucket or CW Logs
+- Send notification to SNS about command status
+- Integrated with IAM/CloudTrail
+- Can be invoked using EventBridge
+
 
 
 
