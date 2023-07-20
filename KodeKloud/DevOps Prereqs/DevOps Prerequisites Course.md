@@ -46,7 +46,13 @@ To configure a gateway on system B so that it can talk to system C we can use th
 
 If we run `route` again we'll see our update routes... However, this needs to be configured for every system (e.g. each needs its own route entry).
 
-Suppose these systems need access to the internet
+Suppose these systems need access to the internet e.g. Google at 172.217.194.0 you can add another route. But this doesn't work with the sheer amount of websites your router isn't aware of...
+
+Instead you can assign a route `ip route add default via 192.168.2.1` meaning that any request to outside of your existing network goes to this particular router. Instead of default you could also add `0.0.0.0` aka any destination.
+
+However, if you have two routers (one for your internal network, and one for the wider internet), you'll need to have two separate entries in each network - one entry for the internal private network, and another 
+
+
 
 
 
