@@ -50,7 +50,26 @@ Suppose these systems need access to the internet e.g. Google at 172.217.194.0 y
 
 Instead you can assign a route `ip route add default via 192.168.2.1` meaning that any request to outside of your existing network goes to this particular router. Instead of default you could also add `0.0.0.0` aka any destination.
 
-However, if you have two routers (one for your internal network, and one for the wider internet), you'll need to have two separate entries in each network - one entry for the internal private network, and another 
+However, if you have two routers (one for your internal network, and one for the wider internet), you'll need to have two separate entries in each network - one entry for the internal private network, and another entry for the default gateway for all other networks.
+
+By default on Linux packets are not forwarded from one interface to another (even if we have set up our routes correctly). This is for security reasons (because if one network is internal - private, and the other public, then you don't want public traffic being piped into your private network). We can explicitly allow forwarding of packets from one network to the other by editing the `cat /proc/sys/net/ipv4/ip_forward` file. By default, the value set is 0 (false), if we set it to 1, the pings should go through. **This change is not persistent across reboots** unless you also edit `/etc/sysctl.conf`file and change 0 to 1 as before.
+
+## Networking Basics | Summary
+
+`ip link` - to list and modify interfaces on the host
+`ip addr` - to see the IP addresses assigned to those interfaces
+`ip addr add` - used to set IP addresses on the interfaces 
+
+**Changes are not persistent across reboots** - if you want to persist them, they need to be set in the `/etc/network/interfaces` file.
+
+`ip route` or `route` - used to view the routing table
+`ip route add` - used to add entries to the routing table
+`cat /proc/sys/net/ipv4/ip_forward` - to check if IP forwarding is enabled on a host
+
+
+
+
+
 
 
 
