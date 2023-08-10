@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "67b7613c798060de",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Hack The Box/TwoMillion Writeup.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -77,8 +90,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "deb53c92afd09000",
@@ -94,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
+                "file": "Hack The Box/TwoMillion Writeup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
+                "file": "Hack The Box/TwoMillion Writeup.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md"
+                "file": "Hack The Box/TwoMillion Writeup.md"
               }
             }
           }
@@ -155,13 +167,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "41bf730124624eb6",
+  "active": "67b7613c798060de",
   "lastOpenFiles": [
-    "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
+    "Hack The Box",
     "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
+    "Hack The Box/TwoMillion Writeup.md",
+    "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
     "KodeKloud/DevOps Prereqs",
     "KodeKloud",
-    "Untitled.md",
     "AWS",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
@@ -192,7 +205,6 @@
     "Azure/SC-900/05. Identity Protection & Governance Capabilities of Azure AD.md",
     "Azure/SC-900/04. MS Identity & Access Management Solutions.md",
     "Azure/SC-900/03. Authentication Capabilities of Azure AD.md",
-    "Azure/SC-900/02. Identity Concepts.md",
-    "Azure/SC-900/01. Concepts of Security Compliance & Identity.md"
+    "Azure/SC-900/02. Identity Concepts.md"
   ]
 }
