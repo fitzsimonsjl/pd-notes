@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hacking with Swift/Day 2.md",
+                "file": "Pentesting/Hack The Box/TwoMillion Writeup.md",
                 "mode": "source",
                 "source": false
               }
@@ -77,8 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "deb53c92afd09000",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Hacking with Swift/Day 2.md",
+                "file": "Pentesting/Hack The Box/TwoMillion Writeup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Hacking with Swift/Day 2.md",
+                "file": "Pentesting/Hack The Box/TwoMillion Writeup.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hacking with Swift/Day 2.md"
+                "file": "Pentesting/Hack The Box/TwoMillion Writeup.md"
               }
             }
           }
@@ -155,44 +154,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "edcd33fa83b4b88d",
+  "active": "fe16baf626917ea9",
   "lastOpenFiles": [
-    "Hacking with Swift/Day 1.md",
-    "Hacking with Swift/Day 2.md",
-    "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
-    "Hacking with Swift",
-    "Hack The Box/TwoMillion Writeup.md",
-    "Hack The Box",
-    "AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
-    "KodeKloud/DevOps Prereqs",
-    "KodeKloud",
-    "AWS",
-    "Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
+    "DevOps",
+    "iOS Dev",
+    "Pentesting",
+    "iOS Dev/Hacking with Swift/Day 2.md",
+    "Cloud",
+    "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
+    "iOS Dev/Hacking with Swift/Day 1.md",
+    "DevOps/KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
+    "iOS Dev/Hacking with Swift",
+    "Pentesting/Hack The Box/TwoMillion Writeup.md",
+    "Pentesting/Hack The Box",
+    "Cloud/AWS/AWS Certified Solutions Architect Associate SAA-C03 Udemy course.md",
+    "DevOps/KodeKloud/DevOps Prereqs",
+    "DevOps/KodeKloud",
+    "Cloud/AWS",
+    "Cloud/Azure/AZ-104/KodeKloud/01 Managing AAD/Managing AAD - Notes.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Concepts.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD vs ADDS.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD/AAD Editions.md",
     "Azure/AZ-104/KodeKloud/01 Managing AAD.md",
     "Azure/AZ-104/KodeKloud/15 Resource Monitoring",
     "Azure/AZ-104/KodeKloud/14 Network Monitoring",
-    "Azure/AZ-104/KodeKloud/13 Implement Backup and recovery",
-    "Azure/AZ-104/KodeKloud/12 Configuring containers",
-    "Azure/AZ-104/KodeKloud/11 Azure App Services",
-    "WithSecure Academy 2023/Week 1/2023-03-13 - Day 1.md",
     "WithSecure Academy 2023/Week 1/IT Setup.md",
-    "Azure/SC-900/Final Prep/SC-900-Whiteboard.png",
-    "Azure/SC-900/16. Service Trust Portal & Privacy at MS.md",
-    "Azure/SC-900/15. Resource governance capabilities in Azure.md",
-    "Azure/SC-900/14. eDiscovery solutions in MS Purview.md",
-    "Azure/SC-900/13. Insider risk capabilities of MS Purview.md",
-    "Azure/SC-900/12. Information protection & data lifecycle management in MS Purview.md",
-    "Azure/SC-900/11. Capabilities of Microsoft compliance solutions.md",
-    "Azure/SC-900/10. Basic security capabilities in Azure.md",
-    "Azure/SC-900/09. Threat protection with Microsoft 365 Defender.md",
-    "Azure/SC-900/08. Security capabilities of MS Sentinel.md",
-    "Azure/SC-900/07. Security management capabilities of Azure.md",
-    "Azure/SC-900/06. Services & Identity Types of Azure AD.md",
-    "Azure/SC-900/05. Identity Protection & Governance Capabilities of Azure AD.md",
-    "Azure/SC-900/04. MS Identity & Access Management Solutions.md",
-    "Azure/SC-900/03. Authentication Capabilities of Azure AD.md"
+    "Cloud/Azure/SC-900/Final Prep/SC-900-Whiteboard.png",
+    "Cloud/Azure/SC-900/16. Service Trust Portal & Privacy at MS.md",
+    "Cloud/Azure/SC-900/15. Resource governance capabilities in Azure.md",
+    "Cloud/Azure/SC-900/14. eDiscovery solutions in MS Purview.md",
+    "Cloud/Azure/SC-900/13. Insider risk capabilities of MS Purview.md",
+    "Cloud/Azure/SC-900/12. Information protection & data lifecycle management in MS Purview.md",
+    "Cloud/Azure/SC-900/11. Capabilities of Microsoft compliance solutions.md",
+    "Cloud/Azure/SC-900/10. Basic security capabilities in Azure.md",
+    "Cloud/Azure/SC-900/09. Threat protection with Microsoft 365 Defender.md",
+    "Cloud/Azure/SC-900/08. Security capabilities of MS Sentinel.md",
+    "Cloud/Azure/SC-900/07. Security management capabilities of Azure.md",
+    "Cloud/Azure/SC-900/06. Services & Identity Types of Azure AD.md",
+    "Cloud/Azure/SC-900/05. Identity Protection & Governance Capabilities of Azure AD.md",
+    "Cloud/Azure/SC-900/04. MS Identity & Access Management Solutions.md"
   ]
 }
