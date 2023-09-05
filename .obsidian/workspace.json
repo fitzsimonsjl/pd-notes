@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hacking with Swift/Day 1.md",
+                "file": "Hacking with Swift/Day 2.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Hacking with Swift/Day 1.md",
+                "file": "Hacking with Swift/Day 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Hacking with Swift/Day 1.md",
+                "file": "Hacking with Swift/Day 2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hacking with Swift/Day 1.md"
+                "file": "Hacking with Swift/Day 2.md"
               }
             }
           }
@@ -157,8 +157,9 @@
   },
   "active": "edcd33fa83b4b88d",
   "lastOpenFiles": [
-    "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
     "Hacking with Swift/Day 1.md",
+    "Hacking with Swift/Day 2.md",
+    "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
     "Hacking with Swift",
     "Hack The Box/TwoMillion Writeup.md",
     "Hack The Box",
@@ -192,7 +193,6 @@
     "Azure/SC-900/06. Services & Identity Types of Azure AD.md",
     "Azure/SC-900/05. Identity Protection & Governance Capabilities of Azure AD.md",
     "Azure/SC-900/04. MS Identity & Access Management Solutions.md",
-    "Azure/SC-900/03. Authentication Capabilities of Azure AD.md",
-    "Azure/SC-900/02. Identity Concepts.md"
+    "Azure/SC-900/03. Authentication Capabilities of Azure AD.md"
   ]
 }
