@@ -64,7 +64,9 @@ By default on Linux packets are not forwarded from one interface to another (eve
 
 `ip route` or `route` - used to view the routing table
 `ip route add` - used to add entries to the routing table
-`cat /proc/sys/net/ipv4/ip_forward` - to check if IP forwarding is enabled on a host
+`cat /proc/sys/net/ipv4/ip_forward` - to check if IP forwarding is enabled on a host.
+
+
 
 
 
