@@ -4,7 +4,7 @@
 - Default Gateway
 - DNS Configurations on Linux
 
-## Switching
+## Switching 
 
 To connect two devices we need as switch, with an interface on each host (e.g. eth0). To see the interfaces for the host, use the `ip link` command.
 

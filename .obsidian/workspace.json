@@ -4,23 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2bdae957a12f69a6",
+        "id": "c2eafad385b884f9",
         "type": "tabs",
         "children": [
           {
-            "id": "41bf730124624eb6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "67b7613c798060de",
+            "id": "edcd33fa83b4b88d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -31,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -90,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "deb53c92afd09000",
@@ -167,7 +155,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "67b7613c798060de",
+  "active": "edcd33fa83b4b88d",
   "lastOpenFiles": [
     "KodeKloud/DevOps Prereqs/DevOps Prerequisites Course.md",
     "Hacking with Swift/Day 1.md",
