@@ -115,5 +115,3 @@ name = 24
 ```
 
 Older APIs use a slightly different way of storing decimal numbers called `CGFloat` however, Swift will allow a Double wherever a CGFloat is expected so they can be safely ignored.
-
-## Booleans
